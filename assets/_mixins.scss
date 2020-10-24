@@ -1,0 +1,5 @@
+@use './variables';
+
+@function rem($pixel) {
+    @return $pixel / 16px * 1rem;
+}

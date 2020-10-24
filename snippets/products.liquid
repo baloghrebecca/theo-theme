@@ -1,0 +1,149 @@
+{% include 'touchMove' %}
+
+<section id="products__wrapper">
+
+    <div id="products">
+        {% for product in collections.frontpage.products %}
+        <div class="product">
+            <a class="product__url" href="{{ product.url | within: collection }}">
+                <div class="product__image__wrapper">
+                    <!-- <img src="{{ product.featured_image.src | img_url: 'large' }}"
+                        alt="{{ product.featured_image.alt | escape }}"> -->
+                    {% for image in product.images limit:8 %}
+                    <img class="product__image" src="{{ image.src | product_img_url: 'master' }}">
+
+                    {% endfor %}
+                </div>
+            </a>
+
+            <div class="product__details">
+                <div class="product__icons__cartButton">
+                    <div class="product__icons">
+                        <div class="product__icon"> <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+
+                                <path
+                                    d="M18.65 16.05C18.83 16.52 18.93 17.04 18.93 17.57C18.93 19.9 17.04 21.8 14.7 21.8C12.36 21.8 10.47 19.91 10.47 17.57C10.47 17.03 10.57 16.52 10.75 16.05"
+                                    stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M18.65 16.05L14.7 6.51001L10.76 16.05" stroke="#36A9E1" stroke-width="1.25"
+                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M14.61 28.59C22.3309 28.59 28.59 22.3309 28.59 14.61C28.59 6.88906 22.3309 0.630005 14.61 0.630005C6.88906 0.630005 0.630005 6.88906 0.630005 14.61C0.630005 22.3309 6.88906 28.59 14.61 28.59Z"
+                                    stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M12.7 17.63C12.7 18.69 13.64 19.58 14.58 19.58" stroke="#36A9E1"
+                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+
+                            </svg> </div>
+                        <div class="product__icon"> <svg width="35" height="30" viewBox="0 0 35 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+
+                                <path d="M10.61 21.09C17.77 21.09 23.57 15.29 23.57 8.13" stroke="#36A9E1"
+                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M23.57 8.13C16.41 8.13 10.61 13.93 10.61 21.09L23.57 8.13Z" stroke="#36A9E1"
+                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M16.65 15.12V19.4V15.12Z" stroke="#36A9E1" stroke-miterlimit="10"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12.37 15.12H16.65" stroke="#36A9E1" stroke-miterlimit="10"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M20.31 16.47V11.38C20.27 11.42 15.22 11.38 15.22 11.38" stroke="#36A9E1"
+                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M17.09 28.59C24.8109 28.59 31.07 22.3309 31.07 14.61C31.07 6.88906 24.8109 0.630005 17.09 0.630005C9.36905 0.630005 3.10999 6.88906 3.10999 14.61C3.10999 22.3309 9.36905 28.59 17.09 28.59Z"
+                                    stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M0.619995 11.91L3.10999 14.61L5.59 11.91" stroke="#36A9E1" stroke-width="1.25"
+                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M33.55 17.3L31.07 14.61L28.59 17.3" stroke="#36A9E1" stroke-width="1.25"
+                                    stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+
+                            </svg> </div>
+                        <div class="product__icon">
+
+                            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+
+                                <path
+                                    d="M14.61 28.59C22.3309 28.59 28.59 22.3309 28.59 14.61C28.59 6.88906 22.3309 0.630005 14.61 0.630005C6.88906 0.630005 0.630005 6.88906 0.630005 14.61C0.630005 22.3309 6.88906 28.59 14.61 28.59Z"
+                                    stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M14.61 14.66V23.19" stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M16.19 12.52C16.19 12.04 15.8 11.66 15.33 11.66C15.03 11.66 14.77 11.81 14.61 12.04C14.45 11.81 14.19 11.66 13.89 11.66C13.41 11.66 13.03 12.05 13.03 12.52C13.03 12.7 13.09 12.87 13.19 13.01H13.18L14.61 14.66L16.04 13.01H16.03C16.13 12.88 16.19 12.71 16.19 12.52Z"
+                                    stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M18.85 10.36C18.85 8.01998 16.95 6.10999 14.6 6.10999C12.25 6.10999 10.35 8.00998 10.35 10.36C8.00998 10.36 6.09998 12.26 6.09998 14.61C6.09998 16.96 7.99998 18.86 10.35 18.86C12.7 18.86 14.6 16.96 14.6 14.61C14.6 16.95 16.5 18.86 18.85 18.86C21.2 18.86 23.1 16.96 23.1 14.61C23.1 12.26 21.2 10.36 18.85 10.36Z"
+                                    stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                </g>
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+                    <button class="button__cart">Buy now</button>
+                </div>
+
+                <div class="product__info">
+                    <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+                    <p>€{{ product.price | money }}</p>
+                    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+                </div>
+
+                <div class="product__sizes">
+                    <div class="product__sizes--headline">Sizes</div>
+                    <div class="product__sizes--sizes">
+
+
+
+                        <!-- <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+                            <select name="id" id="productSelect">
+                                {% for variant in product.variants %}
+                                {% if variant.available %}
+                                <option value="{{ variant.id }}">
+                                    {{ variant.options[0] }}
+                                </option>
+                                {% else %}
+                                <option disabled="disabled">
+                                    {{ variant.title }} - sold out
+                                </option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                            {{ current_variant.price | money }}
+                            <!-- <label for="Quantity">quantity</label> -->
+                            <!-- <input type="number" id="Quantity" name="quantity" value="1" min="1"> 
+                            <button type="submit" name="add" id="AddToCart">Add to cart</button>
+                        </form> -->
+
+
+
+
+                        {% assign sizes = '' %}
+                        {% for variant in product.variants %}
+                        {% if variant.available %}
+                        {% assign sizes = sizes | append: variant.options[0] | append: '_' %}
+                        {% endif %}
+                        {% endfor %}
+
+                        {% assign sizesArr = sizes | split: '_' | uniq %}
+
+                        {% for size in sizesArr %}
+                        <span class="product__sizes--size">{{ size }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="background__gradient--grey"></div>
+</section>

@@ -1,0 +1,66 @@
+<footer id="footer">
+    <div id="newsletter">
+        <div id="newsletter__text">
+            <p>NEWSLETTER</p>
+            <h1><span class="h1__filled">DON’T MISS OUT ON ANY NEWS</span></h1>
+        </div>
+        <form
+            action="https://cathingtheo.us2.list-manage.com/subscribe/post?u=31db5ead1d1080a4c79a9c93a&amp;id=fadf506e28"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+            target="_blank" class="newsletter__form" novalidate>
+            <div id="mc_embed_signup_scroll">
+
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="" autocomplete="off"
+                    required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                        name="b_31db5ead1d1080a4c79a9c93a_fadf506e28" tabindex="-1" value=""></div>
+                <div class="clear">
+                    <p class="datenschutz">Mit Senden bestätige ich, dass ich die <a class="links"
+                            href="#">Datenschutzerklärung</a> gelesen und akzeptiert habe.</p>
+                    <div class="password-footer-newsletter-email-send">
+                        <p>DEINE E-MAIL</p>
+                        <button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button">SENDEN
+                            -></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="footer__copyright">
+        <div>
+            <h3>© CATCHING THEO</h3>
+            <div class="footer__links">
+                {% for link in linklists.footer.links %}
+                {% assign child_list_handle = link.title | handleize %}
+                {% if linklists[child_list_handle].links != blank %}
+                <a class="footer__link" href="{{ link.url }}">{{ link.title }}</a>
+                [{% for childlink in linklists[child_list_handle].links %}
+                <a class="footer__link" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                {% endfor %}]
+                {% else %}
+                <a class="footer__link" href="{{ link.url }}">{{ link.title }}</a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div id="footer__social">
+            <h3>SOCIAL</h3>
+            <div class="footer__links">
+                {% for link in linklists.footer.links %}
+                {% assign child_list_handle = link.title | handleize %}
+                {% if linklists[child_list_handle].links != blank %}
+                <a class="footer__link" href="{{ link.url }}">{{ link.title }}</a>
+                [{% for childlink in linklists[child_list_handle].links %}
+                <a class="footer__link" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                {% endfor %}]
+                {% else %}
+                <a class="footer__link" href="{{ link.url }}">{{ link.title }}</a>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</footer>
