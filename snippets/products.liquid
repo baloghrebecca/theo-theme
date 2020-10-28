@@ -7,8 +7,7 @@
         <div class="product">
             <a class="product__url" href="{{ product.url | within: collection }}">
                 <div class="product__image__wrapper">
-                    <!-- <img src="{{ product.featured_image.src | img_url: 'large' }}"
-                        alt="{{ product.featured_image.alt | escape }}"> -->
+                   
                     {% for image in product.images limit:8 %}
                     <img class="product__image" src="{{ image.src | product_img_url: 'master' }}">
 
@@ -85,17 +84,17 @@
                         </div>
 
                     </div>
-                    <button class="button__cart">Buy now</button>
+                    <!-- <button class="button__cart">Notify me</button> -->
+                    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
                 </div>
 
                 <div class="product__info">
                     <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
                     <p>€{{ product.price | money }}</p>
-                    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
                 </div>
 
                 <div class="product__sizes">
-                    <div class="product__sizes--headline">Sizes</div>
+                    <div class="product__sizes--headline">Buy</div>
                     <div class="product__sizes--sizes">
 
 

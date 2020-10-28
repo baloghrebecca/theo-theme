@@ -1,46 +1,180 @@
 <section id="product__page">
 
   <div id="product__page__image__slider">
-    <div>Pfeile</div>
-    <div id="product__page__image__container">
-      {% for image in product.images offset:9%}
-      <a href="{{ image.src | img_url: 'large' }}">
-        <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
-      </a>
-      {% endfor %}
-    </div>
-    <div id="prouct__page__icon__container">
-      <div class="prouct__page__icon">icon</div>
-      <div class="prouct__page__icon">icon</div>
-      <div class="prouct__page__icon">icon</div>
+    <div id="product__page__arrows">
+      <svg width="46" height="16" viewBox="0 0 46 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0.292892 7.29289C-0.0976295 7.68342 -0.0976296 8.31658 0.292892 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34314C8.46159 1.95262 8.46159 1.31946 8.07107 0.928931C7.68054 0.538407 7.04738 0.538407 6.65685 0.928931L0.292892 7.29289ZM46 7L1 7L1 9L46 9L46 7Z"
+          fill="#E6332A" />
+      </svg>
+      <svg width="46" height="16" viewBox="0 0 46 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M45.7071 8.70711C46.0976 8.31658 46.0976 7.68342 45.7071 7.29289L39.3431 0.928932C38.9526 0.538408 38.3195 0.538408 37.9289 0.928932C37.5384 1.31946 37.5384 1.95262 37.9289 2.34315L43.5858 8L37.9289 13.6569C37.5384 14.0474 37.5384 14.6805 37.9289 15.0711C38.3195 15.4616 38.9526 15.4616 39.3431 15.0711L45.7071 8.70711ZM0 9L45 9V7L0 7L0 9Z"
+          fill="#E6332A" />
+      </svg>
+
     </div>
 
+
+    <div id="product__page__image__container">
+      <div id="product__page__image__anchor">
+        {% for image in product.images offset:9%}
+        <img class="product__page__img" src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+        {% endfor %}
+      </div>
+    </div>
+
+
+    <div id="prouct__page__icon__container">
+      <div class="prouct__page__icon">
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <path
+            d="M18.65 16.05C18.83 16.52 18.93 17.04 18.93 17.57C18.93 19.9 17.04 21.8 14.7 21.8C12.36 21.8 10.47 19.91 10.47 17.57C10.47 17.03 10.57 16.52 10.75 16.05"
+            stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <path d="M18.65 16.05L14.7 6.51001L10.76 16.05" stroke="#36A9E1" stroke-width="1.25"
+            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        <path
+            d="M14.61 28.59C22.3309 28.59 28.59 22.3309 28.59 14.61C28.59 6.88906 22.3309 0.630005 14.61 0.630005C6.88906 0.630005 0.630005 6.88906 0.630005 14.61C0.630005 22.3309 6.88906 28.59 14.61 28.59Z"
+            stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <path d="M12.7 17.63C12.7 18.69 13.64 19.58 14.58 19.58" stroke="#36A9E1"
+            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+
+    </svg> ENVIRONMENTALLY FRIENDLY DYE</div>
+      <div class="prouct__page__icon"><svg width="35" height="30" viewBox="0 0 35 30" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <path d="M10.61 21.09C17.77 21.09 23.57 15.29 23.57 8.13" stroke="#36A9E1"
+            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M23.57 8.13C16.41 8.13 10.61 13.93 10.61 21.09L23.57 8.13Z" stroke="#36A9E1"
+            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M16.65 15.12V19.4V15.12Z" stroke="#36A9E1" stroke-miterlimit="10"
+            stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M12.37 15.12H16.65" stroke="#36A9E1" stroke-miterlimit="10"
+            stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M20.31 16.47V11.38C20.27 11.42 15.22 11.38 15.22 11.38" stroke="#36A9E1"
+            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        <path
+            d="M17.09 28.59C24.8109 28.59 31.07 22.3309 31.07 14.61C31.07 6.88906 24.8109 0.630005 17.09 0.630005C9.36905 0.630005 3.10999 6.88906 3.10999 14.61C3.10999 22.3309 9.36905 28.59 17.09 28.59Z"
+            stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <path d="M0.619995 11.91L3.10999 14.61L5.59 11.91" stroke="#36A9E1" stroke-width="1.25"
+            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M33.55 17.3L31.07 14.61L28.59 17.3" stroke="#36A9E1" stroke-width="1.25"
+            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+
+    </svg> ORGANIC COTTON</div>
+      <div class="prouct__page__icon"><svg width="30" height="30" viewBox="0 0 30 30" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <path
+            d="M14.61 28.59C22.3309 28.59 28.59 22.3309 28.59 14.61C28.59 6.88906 22.3309 0.630005 14.61 0.630005C6.88906 0.630005 0.630005 6.88906 0.630005 14.61C0.630005 22.3309 6.88906 28.59 14.61 28.59Z"
+            stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <path d="M14.61 14.66V23.19" stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10"
+            stroke-linecap="round" stroke-linejoin="round" />
+        <path
+            d="M16.19 12.52C16.19 12.04 15.8 11.66 15.33 11.66C15.03 11.66 14.77 11.81 14.61 12.04C14.45 11.81 14.19 11.66 13.89 11.66C13.41 11.66 13.03 12.05 13.03 12.52C13.03 12.7 13.09 12.87 13.19 13.01H13.18L14.61 14.66L16.04 13.01H16.03C16.13 12.88 16.19 12.71 16.19 12.52Z"
+            stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+            stroke-linejoin="round" />
+        <path
+            d="M18.85 10.36C18.85 8.01998 16.95 6.10999 14.6 6.10999C12.25 6.10999 10.35 8.00998 10.35 10.36C8.00998 10.36 6.09998 12.26 6.09998 14.61C6.09998 16.96 7.99998 18.86 10.35 18.86C12.7 18.86 14.6 16.96 14.6 14.61C14.6 16.95 16.5 18.86 18.85 18.86C21.2 18.86 23.1 16.96 23.1 14.61C23.1 12.26 21.2 10.36 18.85 10.36Z"
+            stroke="#36A9E1" stroke-width="1.25" stroke-miterlimit="10" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </g>
+
+    </svg> COMPOSTABLE PACKAGING</div>
+    </div>
   </div>
 
   <div id="product__page__info">
-    <h1>{{ product.title }}</h1>
+    <h1><span> {{ product.title }} </span><span>€{{ product.price | money }}</span></h1>
     <p>{{ product.content }}</p>
-    <div id="product__page__form__container">
-      form
-    </div>
-    <div id="product__page__metafields">
-      <p>Sizing</p>
-      <div class="product__page__panel">
-        {{ product.metafields.global.sizing }}
-      </div>
-      <p>Material</p>
-      <div class="product__page__panel">
-        {{ product.metafields.global.material }}
-      </div>
-      <p>Transparency</p>
-      <div class="product__page__panel">
-        {{ product.metafields.global.transparency }}
-      </div>
-      <p>Shipping</p>
-      <div class="product__page__panel">
-        {{ product.metafields.global.shipping }}
-      </div>
 
+    <div id="product__page__form__container">
+      <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+        <!-- <select name="id" id="productSelect"> -->
+        <div class="product__page__form__sizes">
+          <div id="product__page__colors__container">
+            <p>Farben</p>
+            <div id="product__page__colors">
+              <a href="/products/{{ handle | replace: 'purple', 'blue' }}"
+                class="select__color {% if handle contains 'blue'%} active {% endif %}">Extra Blue</a>
+              <a href="/products/{{ handle | replace: 'blue', 'purple' }}"
+                class="select__color {% if handle contains 'purple'%} active {% endif %}">Purple af</a>
+
+            </div>
+          </div>
+          <div id="product__page__sizes__container">
+            <p>Grössen</p>
+            <div id="product__page__sizes">
+              {% for variant in product.variants %}
+              {% if variant.available %}
+              <input id="{{ variant.id }}" class="select__sizes" type="radio" value="{{ variant.id }}" name="id"
+                data-inventory-quantity="{{variant.inventory_quantity}}"></input>
+              <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
+              {% else %}
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        {{ current_variant.price | money }}
+
+        {% assign current = product.selected_or_first_available_variant %}
+        <div class="product__page__form__quantity--container">
+          <div class="product__page__form__quantity--input">
+            <label for="Quantity">
+              <p>Anzahl</p>
+            </label>
+            <div class="product__page__form__quantity--field">
+              <input type="hidden" class="quantity__field" id="Quantity" name="quantity" value="1" min="1" max="5">
+              <button class="quantitiy__button--minus js-button-quantity" type="button">&ndash;</button>
+              <span class="quantitiy__button--text">1</span>
+              <button class="quantitiy__button--plus js-button-quantity" type="button">+</button>
+            </div>
+          </div>
+          <button type="submit" class="button__addToCart" name="add" id="AddToCart" disabled>Add to cart</button>
+        </div>
+
+      </form>
+
+
+
+    </div>
+
+
+    <div id="product__page__metafields">
+      <div class="product__page__panel__container">
+        <p class="product__page__panel__title"><span>Sizing</span> <span class="product__page__panel__more">+</span></p>
+        <div class="product__page__panel">
+          {{ product.metafields.global.sizing }}
+        </div>
+      </div>
+      <div class="product__page__panel__container">
+        <p class="product__page__panel__title"><span>Material</span> <span class="product__page__panel__more">+</span>
+        </p>
+        <div class="product__page__panel">
+          {{ product.metafields.global.material }}
+        </div>
+      </div>
+      <div class="product__page__panel__container">
+        <p class="product__page__panel__title"><span>Transparency</span> <span
+            class="product__page__panel__more">+</span></p>
+        <div class="product__page__panel">
+          {{ product.metafields.global.transparency }}
+        </div>
+      </div>
+      <div class="product__page__panel__container">
+        <p class="product__page__panel__title"><span>Shipping</span> <span class="product__page__panel__more">+</span>
+        </p>
+        <div class="product__page__panel">
+          {{ product.metafields.global.shipping }}
+        </div>
+      </div>
 
     </div>
   </div>
@@ -92,4 +226,3 @@
   <input type="number" id="Quantity" name="quantity" value="1" min="1">
   <button type="submit" name="add" id="AddToCart">Add to cart</button>
 </form>
-<div>{{ product.description }}</div> -->

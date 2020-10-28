@@ -1,5 +1,6 @@
 // SPACE MONO + WORK SANS IMPORT
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Archivo+Black&display=swap");
+@import url("https://use.typekit.net/acx5mlt.css");
 
 @function rem($pixel) {
     @return $pixel / 16px * 1rem;
@@ -9,7 +10,7 @@
 
 /* Text */
 $font-mono: "Space Mono", monospace;
-$font-sans: "Archivo Black", sans-serif;
+$font-sans: nimbus-sans, sans-serif;
 $font-regular: 400;
 $font-bold: 700;
 $font-black: 900;
@@ -39,8 +40,9 @@ $padding__mobile: 10px 15px;
 $padding__top: rem(120px);
 $padding__top--tablet: rem(90px);
 $padding__top--mobile: rem(65px);
-$padding__page--start: rem(280px);
+$padding__page--start: rem(400px);
 $padding__page--tablet: rem(220px);
+$padding__button: rem(5px) rem(10px);
 
 /* Break points*/
 $desktop: 1260px;
@@ -194,6 +196,49 @@ a {
     }
 }
 
+.visually-hidden {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.active {
+    background-color: $bg__color--red;
+    color: $bg__color--grey;
+    border: 1px solid transparent;
+}
+
+.button-radio {
+    font-size: $text__size--mobile;
+    transition: 0.2s ease all;
+    cursor: pointer;
+    border: solid 1px $text__color--red;
+    border-radius: $border-radius;
+    padding: rem(5px) rem(20px);
+
+    &:hover {
+        background-color: $bg__color--red;
+        color: $bg__color--grey;
+    }
+}
+
+.cta--secondary {
+    text-transform: uppercase;
+    transition: 0.2s ease all;
+    padding: $padding__button;
+    background-color: $bg__color--grey;
+    color: $text__color--red;
+    border: 1px solid transparent;
+
+    &:hover {
+        background-color: transparent;
+        color: $text__color--red;
+        border-color: $text__color--red;
+    }
+}
+
 /* END GENERAL STYLING */
 
 /* HEADER */
@@ -306,7 +351,6 @@ a {
             }
 
             &:hover {
-              
                 // transform: rotate(20deg);
                 transform: translateX(-10px);
             }
@@ -399,14 +443,13 @@ a {
                 margin-bottom: rem(25px);
                 position: relative;
                 min-height: 340px;
-             
 
                 img {
                     opacity: 0;
                     position: absolute;
-                    top: 50%;
+                    top: 40%;
                     left: 50%;
-                  
+
                     transform: translate(-50%, -50%);
                     width: 100%;
 
@@ -431,7 +474,7 @@ a {
 
                     .product__icon {
                         // margin-right: rem(8px);
-                        
+
                         svg {
                             width: 80%;
                         }
@@ -442,17 +485,20 @@ a {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-
-                    
                 }
-            
+
                 .button__cart {
                     margin-bottom: rem(5px);
-                    border: 1px solid $bg__color--red;
-                        font-size: $text__size--mini;
-                        padding: rem(5px) rem(10px);
-                    
+                    border: 1px solid $bg__color--cyan;
+                    background-color: $text__color--blue;
+                    color: $bg__color--grey;
+                    font-size: $text__size--mini;
+                    padding: rem(5px) rem(10px);
 
+                    &:hover {
+                        background-color: transparent;
+                        color: $text__color--blue;
+                    }
                 }
 
                 .product__info {
@@ -486,7 +532,17 @@ a {
                     color: $bg__color--grey;
 
                     .product__sizes--size {
+                        cursor: pointer;
+                        font-size: $text__size--mini;
                         display: inline-block;
+                        padding: rem(3px) rem(10px);
+                        border: 1px solid $text__color--red;
+                        border-radius: $border-radius;
+
+                        &:hover {
+                            color: $bg__color--grey;
+                            background-color: $bg__color--red;
+                        }
                         // margin-left: rem(3px);
                     }
                 }
@@ -903,9 +959,10 @@ a {
 // CART START//
 
 #cart {
+    transition: all 0.5s ease;
     z-index: 1000;
     position: absolute;
-    top: 0;
+    top: -100%;
     left: 0;
     right: 0;
     padding: rem(66px) $padding;
@@ -929,11 +986,18 @@ a {
         align-items: center;
 
         #cart__close {
+            transition: all 0.3s ease;
             svg {
+                cursor: pointer;
+
                 @media screen and (max-width: $desktop__smallest) {
                     stroke-width: 3;
                     width: rem(20px);
                 }
+            }
+
+            &:hover {
+                transform: rotate(90deg);
             }
         }
     }
@@ -1057,7 +1121,7 @@ a {
                 }
             }
         }
-        @media screen and (max-width: $tablet) {
+        @media screen and (max-width: $desktop__smallest) {
             padding-top: $padding__top--mobile;
         }
     }
@@ -1079,11 +1143,263 @@ a {
 
 //CART END //
 
-
-
-
 // PRODUCT PAGE START //
 
+#product__page {
+    padding: $padding__page--start $margin__body;
+    background: linear-gradient(180deg, #c9dadf 0%, #efe7de 90.1%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: rem(70px);
 
+    #product__page__image__slider {
+        height: 100%;
+        position: relative;
+
+        #product__page__arrows {
+            z-index: 8;
+            width: 100;
+            position: absolute;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            left: 0;
+            right: 0;
+            top: 50%;
+
+            transform: translateY(-50%);
+        }
+
+        #product__page__image__container {
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            background-color: red;
+
+            #product__page__image__anchor {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+
+                .product__page__img {
+                    object-fit: cover;
+                    opacity: 0;
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+
+                    transform: translateX(-50%);
+                    width: 95%;
+
+                    &:first-child {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        #prouct__page__icon__container {
+            font-size: $text__size--mobile;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            
+
+            .prouct__page__icon {
+                display: flex;
+                align-items: center;
+                color: $text__color--blue;
+                margin-right: rem(15px);
+                margin-bottom: rem(10px);
+
+                svg {
+                    margin-right: rem(15px);
+                  
+                }
+            }
+        }
+    }
+
+    #product__page__info {
+        h1 {
+            margin-top: 0;
+            padding-top: 0;
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                display: inline-block;
+            }
+        }
+
+        #product__page__metafields {
+            margin-top: rem(45px);
+
+            .product__page__panel__container {
+                transition: all 0.3s ease;
+                margin: 0;
+
+                border-top: 2px solid $text__color--red;
+
+                &:first-child {
+                    border-top: none;
+                }
+
+                &:nth-last-child(1) {
+                    border-bottom: 2px solid $text__color--red;
+                }
+            }
+
+            .product__page__panel__title {
+                transition: all 0.3s ease;
+                cursor: pointer;
+                margin: rem(10px) 0;
+                font-weight: $font-bold;
+                display: flex;
+                justify-content: space-between;
+
+                span {
+                    display: inline-block;
+                }
+
+                .product__page__panel__more {
+                    transition: all 0.2s ease;
+                    display: inline-block;
+                    transform: rotate(0deg);
+                }
+            }
+
+            .product__page__panel {
+                transition: all 0.3s ease;
+                display: none;
+                padding-bottom: rem(20px);
+            }
+        }
+
+        #product__page__form__container {
+            font-weight: $font-bold;
+
+            p {
+                text-transform: uppercase;
+                margin-bottom: rem(10px);
+            }
+
+            .product__page__form__sizes {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                margin-bottom: rem(10px);
+
+                #product__page__colors {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .select__color {
+                        text-transform: uppercase;
+                        margin: 0;
+                        @extend .button-radio;
+                        margin-right: rem(10px);
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+
+                #product__page__sizes {
+                    display: flex;
+
+                    .select__sizes {
+                        width: 45%;
+                        @extend .visually-hidden;
+
+                        & + label {
+                            @extend .button-radio;
+                            margin-right: rem(10px);
+                        }
+
+                        &:checked + label {
+                            background-color: $bg__color--red;
+                            color: $bg__color--grey;
+                        }
+                    }
+                }
+            }
+
+            .product__page__form__quantity--container {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+
+                .product__page__form__quantity--input {
+                    margin-right: rem(20px);
+                    width: 40%;
+
+                    .product__page__form__quantity--field {
+                        width: 100%;
+                        font-weight: $font-bold;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border: 1px solid $text__color--red;
+                        border-radius: $border-radius;
+                        padding: $padding__button;
+                        padding-top: rem(15px);
+                        padding-bottom: rem(15px);
+
+                        button {
+                            padding: 0;
+                            border: none;
+                            font-weight: $font-bold;
+
+                            &:hover {
+                                background-color: transparent;
+                                color: $text__color--red;
+                            }
+
+                            &:focus,
+                            &:active {
+                                outline: none;
+                            }
+                        }
+                        .quantitiy__button--minus {
+                            margin-left: rem(10px);
+                        }
+                        .quantitiy__button--plus {
+                            margin-right: rem(10px);
+                        }
+                    }
+                }
+
+                .button__addToCart {
+                    font-weight: $font-bold;
+                    width: 60%;
+                    @extend .cta--secondary;
+                    height: 100%;
+
+                    padding-top: rem(15px);
+                    padding-bottom: rem(15px);
+
+                    &:disabled {
+                        cursor: default;
+                        color: grey;
+                        background-color: gainsboro;
+                        border-color: grey;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: $phone) {
+        grid-template-columns: 1fr;
+    }
+}
 
 //PRODUCT PAGE END //

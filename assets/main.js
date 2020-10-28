@@ -74,7 +74,7 @@ const resizingHeaderData = () => {
             logo.style.width = '200px'
             burger.style.marginTop = '20px'
         }
-   
+
         if (windowWidth < 550) {
             navigation.style.top = "50px"
             logo.style.width = '150px'
@@ -90,13 +90,13 @@ window.addEventListener('resize', function (e) {
     windowWidth = window.innerWidth
 
     resizingHeaderData()
- 
+
 });
 
 window.addEventListener('scroll', function (e) {
 
     scrollPosition = window.scrollY;
-    
+
     resizingHeaderData()
 
 });
@@ -195,6 +195,174 @@ for (var i = 0; i < products.length; i++) {
 }
 
 
+// ACCORDEON //
+
+const panels = document.querySelectorAll('.product__page__panel__container')
+const plusIcons = document.querySelectorAll('.product__page__panel__more')
 
 
+for (var i = 0; i < panels.length; i++) {
+    panels[i].addEventListener("click", function (event) {
+        let plusIcon = this.querySelector('.product__page__panel__more');
+        let panel = this.querySelector('.product__page__panel')
+
+
+
+        if (panel.style.display == 'block') {
+            panel.style.display = 'none'
+            plusIcon.style.transform = 'rotate(0deg)'
+        } else {
+            panel.style.display = 'block'
+            plusIcon.style.transform = 'rotate(45deg)'
+        }
+
+    }, false);
+}
+
+// CART SLIDE OUT //
+
+const cartIcon = document.querySelector('.link__cart')
+const cartCloseIcon = document.querySelector('#cart__close')
+const cart = document.querySelector('#cart')
+const cartContainer = document.querySelector('#cart__products__container')
+
+const toggleCart = () => {
+    let cartTop = cart.style.top
+
+    if (cartTop == '0px') {
+        cart.style.top = '-100%'
+    } else {
+        cart.style.top = 0
+    }
+}
+
+const openCartOnAdd = () => {
+    cart.style.top = 0
+}
+
+cartIcon.addEventListener('click', function (event) {
+    event.preventDefault();
+    toggleCart()
+}, false)
+
+cartCloseIcon.addEventListener('click', function (event) {
+    event.preventDefault();
+    toggleCart()
+}, false)
+
+
+// QUANTITY  //
+
+const quantityField = document.querySelector('.quantity__field')
+const quantityButtons = document.querySelectorAll('.js-button-quantity')
+const quantityTextField = document.querySelector('.quantitiy__button--text')
+const sizesFields = document.querySelectorAll('.select__sizes')
+const addToCartButton = document.querySelector('.button__addToCart')
+
+let maxValue;
+let minValue = 1;
+
+for (var i = 0; i < quantityButtons.length; i++) {
+    quantityButtons[i].addEventListener("click", function (event) {
+        let includesPlus = this.classList.value.includes('plus');
+
+        if (includesPlus) {
+            if (parseInt(quantityField.value) >= maxValue) {
+                return
+            }
+            quantityField.value = parseInt(quantityField.value) + 1
+        } else {
+            if (parseInt(quantityField.value) <= minValue) {
+                return
+            }
+            quantityField.value = parseInt(quantityField.value) - 1
+        }
+
+        quantityTextField.innerHTML = quantityField.value;
+        ;
+    }, false);
+}
+
+
+
+for (var i = 0; i < sizesFields.length; i++) {
+    sizesFields[i].addEventListener("change", function (event) {
+
+        maxValue = this.getAttribute('data-inventory-quantity');
+        quantityField.setAttribute("max", maxValue);
+        addToCartButton.disabled = false;
+
+        if (parseInt(quantityField.value) > maxValue) {
+            quantityField.value = maxValue
+            quantityTextField.innerHTML = maxValue
+
+        }
+
+
+    }, false);
+}
+
+
+// ADD TO CART / UPDATE CART //
+
+const cartProductContainer = document.querySelector('#cart__products__container')
+
+onAddToCart = function (event) {
+    event.preventDefault();
+   
+    $.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: onCartUpdated, //what happens in success case
+        error: onError, //what happens in error case
+    });
+    
+    openCartOnAdd()
+
+},
+onLineRemoved = function(event) {
+    event.preventDefault()
+    let 
+        $removeLink = $(this),
+        removeQuery = $removeLink.attr('href').split('change?')[1]
+        $.post('/cart/change.js', removeQuery, onCartUpdated, 'json')
+},
+    onCartUpdated = function (event) {
+        //jQuery Ajax Call
+        $.ajax({
+            type: 'GET', //method
+            url: '/cart/', //url
+            context: document.body, //what the call should affect (i think lol)
+            success: function(context) {
+                let 
+                    $dataCartContents = $(context).find('#cart__products__container'),
+                    dataCartHtml = $dataCartContents.html(),
+                    dataItemCount = $dataCartContents.attr('data-cart-item-count')
+
+                   console.log('items in cart', dataItemCount);
+                    //this adds the new data to the cart immediately
+                    $( "#cart__products__container" ).html(dataCartHtml)
+                    console.log('updated');
+
+
+            },
+            error: onError,
+        });
+
+    
+    },
+    onError = function (XMLHttpRequest, message) {
+        let data = XMLHttpRequest.responseJSON
+        console.log(data.status + data.message)
+    }
+
+
+const addToCartForm = document.querySelector('#AddToCartForm');
+
+
+addToCartForm.addEventListener('submit', onAddToCart, false);
+
+$(document).on('click', '.cart__remove__button', onLineRemoved);
 
