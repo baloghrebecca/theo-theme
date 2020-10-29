@@ -32,7 +32,7 @@ var modal = document.getElementById("myModal");
 
 // Get the <span> element that closes the modal
 var span = document.querySelector(".close");
-
+ 
 // When the user clicks on the button, open the modal
 link.onclick = function(event) {
   console.log('HELLO!');

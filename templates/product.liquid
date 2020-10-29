@@ -117,8 +117,7 @@
                 data-inventory-quantity="{{variant.inventory_quantity}}"></input>
               <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
               {% else %}
-              sold
-              <input id="{{ variant.id }}" class="select__sizes" type="radio" value="{{ variant.id }}" name="id"
+              <input id="{{ variant.id }}" class="select__sizes sold__out" type="radio" value="{{ variant.id }}" name="id"
               data-inventory-quantity="{{variant.inventory_quantity}}"></input>
             <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
               {% endif %}
@@ -142,7 +141,6 @@
             </div>
           </div>
           <button type="submit" class="button__addToCart" name="add" id="AddToCart" disabled>Add to cart</button>
-  
         </div>
 
       </form>

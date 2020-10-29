@@ -536,6 +536,7 @@ a {
                     font-size: $text__size--mobile;
                     display: flex;
                     justify-content: space-between;
+                    align-items: center;
                     flex-wrap: wrap;
                     font-family: $font-sans;
                     opacity: 0;
@@ -557,6 +558,29 @@ a {
                             background-color: $bg__color--red;
                             color: $bg__color--grey;
                         }
+                    }
+
+                    .sold__out {
+                        width: 45%;
+                        @extend .visually-hidden;
+
+                        & + label {
+                            @extend .button-radio;
+                            background-color: #C9DADF;
+                            border-color: $text__color--blue;
+                            color: $text__color--blue;
+
+                            &:hover {
+                                background-color: $text__color--blue;
+                                color: $bg__color--grey;
+                            }
+                        }
+
+                        &:checked + label {
+                            background-color: $text__color--blue;
+                            color: $bg__color--grey;
+                        }
+
                     }
 
                     .product__sizes--headline {
@@ -1362,6 +1386,7 @@ a {
                             text-decoration: none;
                         }
                     }
+                
                 }
 
                 #product__page__sizes {
@@ -1380,6 +1405,29 @@ a {
                             background-color: $bg__color--red;
                             color: $bg__color--grey;
                         }
+                    }
+
+                    .sold__out {
+                        width: 45%;
+                        @extend .visually-hidden;
+
+                        & + label {
+                            @extend .button-radio;
+                            background-color: #C9DADF;
+                            border-color: $text__color--blue;
+                            color: $text__color--blue;
+
+                            &:hover {
+                                background-color: $text__color--blue;
+                                color: $bg__color--grey;
+                            }
+                        }
+
+                        &:checked + label {
+                            background-color: $text__color--blue;
+                            color: $bg__color--grey;
+                        }
+
                     }
                 }
             }

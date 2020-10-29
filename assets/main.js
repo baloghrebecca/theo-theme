@@ -391,8 +391,10 @@ $('#product__page__sizes .js-buy-now').on('click', function (e) {
         dataType: 'json',
         success: function(data) {
             window.open('/cart/checkout', '_blank');
-        },
-        error: onError, //what happens in error case
+        }, 
+        error: function(data) {
+            return;
+        }, 
     });
 });
 
