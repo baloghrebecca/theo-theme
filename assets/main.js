@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 
 
 // LIVETICKER //
@@ -224,7 +226,7 @@ for (var i = 0; i < panels.length; i++) {
 const cartIcon = document.querySelector('.link__cart')
 const cartCloseIcon = document.querySelector('#cart__close')
 const cart = document.querySelector('#cart')
-const cartContainer = document.querySelector('#cart__products__container')
+const cartContainer = document.querySelector('.cart__products__container')
 
 const toggleCart = () => {
     let cartTop = cart.style.top
@@ -305,11 +307,11 @@ for (var i = 0; i < sizesFields.length; i++) {
 
 // ADD TO CART / UPDATE CART //
 
-const cartProductContainer = document.querySelector('#cart__products__container')
+const cartProductContainer = document.querySelector('.cart__products__container')
 
 onAddToCart = function (event) {
     event.preventDefault();
-   
+
     $.ajax({
         type: 'POST',
         url: '/cart/add.js',
@@ -318,40 +320,39 @@ onAddToCart = function (event) {
         success: onCartUpdated, //what happens in success case
         error: onError, //what happens in error case
     });
-    
+
     openCartOnAdd()
 
 },
-onLineRemoved = function(event) {
-    event.preventDefault()
-    let 
-        $removeLink = $(this),
-        removeQuery = $removeLink.attr('href').split('change?')[1]
+    onLineRemoved = function (event) {
+        console.log('removing it!!');
+        event.preventDefault()
+        event.stopPropagation()
+        let
+            $removeLink = $(this),
+            removeQuery = $removeLink.attr('href').split('change?')[1]
         $.post('/cart/change.js', removeQuery, onCartUpdated, 'json')
-},
+    },
     onCartUpdated = function (event) {
         //jQuery Ajax Call
         $.ajax({
             type: 'GET', //method
-            url: '/cart/', //url
-            context: document.body, //what the call should affect (i think lol)
-            success: function(context) {
-                let 
-                    $dataCartContents = $(context).find('#cart__products__container'),
+            url: '/cart',
+            context: document.body,
+            success: function (context) {
+                let
+                    $dataCartContents = $(context).find('.cart__page--content'),
                     dataCartHtml = $dataCartContents.html(),
-                    dataItemCount = $dataCartContents.attr('data-cart-item-count')
+                    dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
+                    $miniCartContents = $('.cart__content');
 
-                   console.log('items in cart', dataItemCount);
-                    //this adds the new data to the cart immediately
-                    $( "#cart__products__container" ).html(dataCartHtml)
-                    console.log('updated');
-
+                $miniCartContents.html(dataCartHtml)
 
             },
             error: onError,
         });
 
-    
+
     },
     onError = function (XMLHttpRequest, message) {
         let data = XMLHttpRequest.responseJSON
@@ -360,9 +361,13 @@ onLineRemoved = function(event) {
 
 
 const addToCartForm = document.querySelector('#AddToCartForm');
+const removeButtons = document.querySelectorAll('.cart__content .cart__remove__button')
+
+console.log(removeButtons);
 
 
 addToCartForm.addEventListener('submit', onAddToCart, false);
 
-$(document).on('click', '.cart__remove__button', onLineRemoved);
+$(document).on('click', '.cart__content .cart__remove__button', onLineRemoved);
 
+})

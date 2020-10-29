@@ -442,7 +442,7 @@ a {
                 width: 100%;
                 margin-bottom: rem(25px);
                 position: relative;
-                min-height: 340px;
+                min-height: 400px;
 
                 img {
                     opacity: 0;
@@ -969,7 +969,7 @@ a {
     background-color: $bg__color--red;
     color: $bg__color--grey;
 
-    #cart__empty {
+    .cart__empty {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1077,13 +1077,13 @@ a {
         }
     }
 
-    #cart__buttons {
+    .cart__buttons {
         padding-top: $padding__top;
         width: 100%;
         display: flex;
         justify-content: flex-end;
 
-        #cart__buttons__container {
+        .cart__buttons__container {
             button {
                 color: $bg__color--grey;
                 border: solid $bg__color--grey 2px;
@@ -1388,9 +1388,9 @@ a {
 
                     &:disabled {
                         cursor: default;
-                        color: grey;
-                        background-color: gainsboro;
-                        border-color: grey;
+                        color: $text__color--blue;
+                        background-color: #C9DADF;
+                        border-color: $text__color--blue;
                     }
                 }
             }

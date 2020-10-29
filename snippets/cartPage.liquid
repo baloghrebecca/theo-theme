@@ -1,4 +1,4 @@
-<div id="cart" data-cart-item-count="{{ cart.item_count }}">
+<div id="cart">
   <div id="cart__headline">
     <h1>Your <span class="h1__filled">Cart</span></h1>
     <div id="cart__close">
@@ -10,47 +10,8 @@
 
   </div>
 
-{{cart.item_count}}
-
-  {% if cart.item_count > 0 %}
-
-  <form action="/cart" method="post" novalidate id="cart__products__container">
-
-      {% for item in cart.items %}
-      <div class="cart__product">
-        <p class="cart__product--title"><a class="cart__remove__button" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">x</a> <a
-            href="{{ item.url }}">{{ item.product.title }} <span
-              class="cart__product--color">({{ item.options_with_values[1].value }})</span></a>
-          <!-- <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}"> -->
-        </p>
-
-        <p>
-          <!-- {{ item.options_with_values[0].name }}  -->
-          {{ item.options_with_values[0].value }}</p>
-
-        <p> €{{ item.line_price | money }}
-          {% for discount in item.discounts %}{{ discount.title }}{% endfor %}</p>
-
-        <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-
-      </div>
-      {% endfor %}
-
-
-    <div id="cart__buttons">
-      <!-- <p>sub total : {{ cart.total_price | money }}</p> -->
-      <div id="cart__buttons__container">
-        <button id="cart__continueShopping" type="button">Update</button>
-        <button class="button__filled" type="submit" name="checkout">ORDER NOW</button>
-      </div>
-    </div>
-  </form>
-  {% else %}
-  <div id="cart__empty">
-    {{ 'theo_sad.png' | asset_url | img_tag: 'Theo Sad Cart Empty' }}
-    <p>Dein Warenkorb ist leer :( </p>
+  <div class="cart__content">
+    {% include 'cartContents' %}
   </div>
 
-  <!-- <p>sub total : {{ cart.total_price | money }}</p> -->
-  {% endif %}
 </div>
