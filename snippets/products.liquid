@@ -94,35 +94,34 @@
                 </div>
 
                 <div class="product__sizes">
-                    <div class="product__sizes--headline">Buy</div>
+                    <div><p class="product__sizes--headline">Kaufen</p></div>
                     <div class="product__sizes--sizes">
 
 
 
-                        <!-- <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
-                            <select name="id" id="productSelect">
+                        <form action="/cart/add" method="post" enctype="multipart/form-data" id="buyNowForm">
+                            <div id="product__page__sizes">
                                 {% for variant in product.variants %}
                                 {% if variant.available %}
-                                <option value="{{ variant.id }}">
-                                    {{ variant.options[0] }}
-                                </option>
+                                <input id="{{ variant.id }}" class="select__sizes js-buy-now" type="radio" value="{{ variant.id }}" name="id"
+                                  data-inventory-quantity="{{variant.inventory_quantity}}"></input>
+                                <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
                                 {% else %}
-                                <option disabled="disabled">
-                                    {{ variant.title }} - sold out
-                                </option>
+                                <input id="{{ variant.id }}" class="select__sizes js-buy-now sold__out" type="radio" value="{{ variant.id }}" name="id"
+                                  data-inventory-quantity="{{variant.inventory_quantity}}"></input>
+                                <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
                                 {% endif %}
                                 {% endfor %}
-                            </select>
+                              </div>
                             {{ current_variant.price | money }}
-                            <!-- <label for="Quantity">quantity</label> -->
-                            <!-- <input type="number" id="Quantity" name="quantity" value="1" min="1"> 
-                            <button type="submit" name="add" id="AddToCart">Add to cart</button>
-                        </form> -->
+                            <input type="hidden" id="Quantity" name="quantity" value="1" min="1"> 
+                            <!-- <button type="submit" name="add" id="AddToCart">Add to cart</button> -->
+                        </form>
 
 
 
 
-                        {% assign sizes = '' %}
+                        <!-- {% assign sizes = '' %}
                         {% for variant in product.variants %}
                         {% if variant.available %}
                         {% assign sizes = sizes | append: variant.options[0] | append: '_' %}
@@ -133,7 +132,7 @@
 
                         {% for size in sizesArr %}
                         <span class="product__sizes--size">{{ size }}</span>
-                        {% endfor %}
+                        {% endfor %} -->
                     </div>
                 </div>
             </div>

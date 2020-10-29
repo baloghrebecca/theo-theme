@@ -117,6 +117,10 @@
                 data-inventory-quantity="{{variant.inventory_quantity}}"></input>
               <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
               {% else %}
+              sold
+              <input id="{{ variant.id }}" class="select__sizes" type="radio" value="{{ variant.id }}" name="id"
+              data-inventory-quantity="{{variant.inventory_quantity}}"></input>
+            <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
               {% endif %}
               {% endfor %}
             </div>
