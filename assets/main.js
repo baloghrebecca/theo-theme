@@ -43,6 +43,7 @@ $(document).ready(function () {
 
         if (scrollPosition > 50) {
 
+
             navigation.style.top = "-10px"
             logo.style.width = '150px'
 
@@ -253,10 +254,10 @@ $(document).ready(function () {
         toggleCart()
     }, false)
 
-    continueShoppingButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        toggleCart()
-    }, false)
+    // continueShoppingButton.addEventListener('click', function (event) {
+    //     event.preventDefault();
+    //     toggleCart()
+    // }, false)
 
 
     // QUANTITY  //
@@ -271,9 +272,10 @@ $(document).ready(function () {
     let minValue = 1;
 
     for (var i = 0; i < quantityButtons.length; i++) {
+
         quantityButtons[i].addEventListener("click", function (event) {
             let includesPlus = this.classList.value.includes('plus');
-
+            console.log('clicked quantity')
             if (includesPlus) {
                 if (parseInt(quantityField.value) >= maxValue) {
                     return
@@ -295,7 +297,7 @@ $(document).ready(function () {
 
     for (var i = 0; i < sizesFields.length; i++) {
         sizesFields[i].addEventListener("change", function (event) {
-
+            console.log('size chosen');
             maxValue = this.getAttribute('data-inventory-quantity');
             quantityField.setAttribute("max", maxValue);
             addToCartButton.disabled = false;
@@ -313,8 +315,6 @@ $(document).ready(function () {
 
     // ADD TO CART / UPDATE CART //
 
-    const cartProductContainer = document.querySelector('.cart__products__container')
-
     onAddToCart = function (event) {
         event.preventDefault();
 
@@ -328,7 +328,8 @@ $(document).ready(function () {
         });
 
         openCartOnAdd()
-
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0;
     },
         onLineRemoved = function (event) {
             console.log('removing it!!');
@@ -389,12 +390,61 @@ $('#product__page__sizes .js-buy-now').on('click', function (e) {
         url: '/cart/add.js',
         data: $(this).serialize(),
         dataType: 'json',
-        success: function(data) {
+        success: function (data) {
             window.open('/cart/checkout', '_blank');
-        }, 
-        error: function(data) {
+        },
+        error: function (data) {
             return;
-        }, 
+        },
     });
 });
 
+// CART QUANTITY //
+
+
+
+// $('.js-button-quantity-cart').on('click', function (event) {
+//     event.preventDefault()
+//     console.log('what is this', this.classList.value.includes('plus'));
+
+//     $( "input[name='update']" ).trigger( "click" );
+// })
+
+
+// PRODUCT SLIDESHOW //
+
+const productImages = $('.product__page__img')
+const arrowLeft = $('.gallery-arrow-left')
+const arrowRight = $('.gallery-arrow-right')
+
+let index = 0;
+
+arrowRight.on('click', function (event) {
+    event.preventDefault();
+    if (index >= productImages.length-1) {
+        productImages[index].style.display = "none";
+        index = 0;
+        productImages[index].style.display = "block";
+    } else {
+        productImages[index].style.display = "none";
+        index++
+        productImages[index].style.display = "block";
+    }
+})
+
+arrowLeft.on('click', function (event) {
+    event.preventDefault();
+    if (index == 0) {
+        return;
+    } 
+    if (index <= 0) {
+        productImages[index].style.display = "none";
+        index = 0;
+        productImages[index].style.display = "block";
+    } else {
+        productImages[index].style.display = "none";
+        index--
+        productImages[index].style.display = "block";
+    }
+
+})

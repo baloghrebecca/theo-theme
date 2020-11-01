@@ -1,2 +1,22 @@
-<h1>{{ page.title }}</h1>
-<!-- <div>{{ page.content }}</div> --> 
+<section id="about">
+    <div class="about__text--container">
+        <h1>{{ page.metafields.global.about_headline }}</h1>
+        <p>{{ page.metafields.global.about__text }}</p>
+    </div>
+    <div class="about__img--container">
+        {{ 'theo_happy.png' | asset_url | img_tag: 'Happy Theo' }}
+    </div>
+</section>
+<section id="about__collection">
+    <div class="about__collection--image">
+        {{ 'mood-about.png' | asset_url | img_tag: 'About Collection Photo' }}
+    </div>
+    <div class="about__collection--text">
+        <h1>{{ page.metafields.global.about__collection__headline }}</h1>
+        <p>{{ page.metafields.global.about__collection__text }}</p>
+        <button class="cta--secondary about__collection--button">Jetzt 
+            einkaufen</button>
+    </div>
+</section>
+{% include 'tickerPurple' %}
+{% include 'instagram' %}

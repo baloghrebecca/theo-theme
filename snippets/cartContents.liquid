@@ -17,8 +17,15 @@
     
         <p> €{{ item.line_price | money }}
             {% for discount in item.discounts %}{{ discount.title }}{% endfor %}</p>
+
+            <div class="cart__quantity__container">
+              <input type="number" class="cart__quantity__field" id="updates_{{ item.key }}" name="updates[]" value="{{ item.quantity }}" min="0" max="5">
+              <button class="cart__quantitiy__button--minus js-button-quantity-cart" type="button">&ndash;</button>
+              <span class="cart__quantitiy__button--text">{{ item.quantity }}</span>
+              <button class="cart__quantitiy__button--plus js-button-quantity-cart" type="button">+</button>
+            </div>
     
-        <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+        <!-- <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0"> -->
     
     </div>
     {% endfor %}
