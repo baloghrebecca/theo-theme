@@ -504,6 +504,49 @@ a {
 
 }
 
+
+//SHIPPING BANNER //
+#shipping__banner {
+    background-color: $bg__color--red;
+    color: $bg__color--grey;
+    @extend .display-flex-horizontal;
+    position: fixed;
+    width: 100%;
+    z-index: 99999;
+    padding: 0 $margin__body;
+
+    p { 
+        font-size: $text__size--mobile;
+        margin: 0;
+    }
+
+    #shipping__close {
+        display: flex;
+        justify-content: flex-end;
+
+        svg {
+            width: 40%;
+        }
+    }
+    
+    @media screen and (max-width: $phone) {
+        padding: 0 rem(20px);
+        
+        p {
+            font-size: $text__size--mini;
+            line-height: 0;
+        }
+
+        #shipping__close {
+    
+            svg {
+                width: 30%;
+            }
+        }
+    }
+}
+
+
 /* END HEADER */
 
 /* PRODUCTS */
@@ -1182,7 +1225,7 @@ a {
             // width: 200px;
             flex: 0 0 auto; //cant expand can't shrink and stays it's size
             display: inline-block;
-            margin-left: rem(15px);
+            margin-left: rem(20px);
         }
     }
 }
@@ -1207,7 +1250,7 @@ a {
             // width: 200px;
             flex: 0 0 auto; //cant expand can't shrink and stays it's size
             display: inline-block;
-            margin-left: rem(50px);
+            margin-left: rem(20px);
 
             a {
                 color: $text__color--purple;
@@ -1363,7 +1406,7 @@ a {
                 }
 
                 @media screen and (max-width: $phone) {
-                    padding: rem(10px) rem(40px) rem(10px) rem(40px);
+                    padding: rem(10px) rem(20px) rem(10px) rem(20px);
                 }
             }
 
@@ -1379,12 +1422,17 @@ a {
                     border-color: $bg__color--grey;
                 }
                 @media screen and (max-width: $phone) {
-                    padding: rem(10px) rem(40px) rem(10px) rem(40px);
+                    padding: rem(10px) rem(20px) rem(10px) rem(20px);
                 }
             }
         }
         @media screen and (max-width: $desktop__smallest) {
             padding-top: $padding__top--mobile;
+        }
+        @media screen and (max-width: $phone) {
+            padding-top: rem(20px);
+            display: flex;
+            justify-content: space-between;
         }
     }
 
@@ -1419,7 +1467,7 @@ a {
 #product__page {
     padding: $padding__page--start $margin__body;
     padding-bottom: $margin__body;
-    background: linear-gradient(180deg, $bg__color--light-blue 0%, #efe7de 90.1%);
+    background: linear-gradient(180deg, $bg__color--light-blue 0%, #efe7de 98.1%);
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: rem(70px);
@@ -1715,6 +1763,21 @@ a {
                             padding-bottom: rem(15px);
                         }
                     }
+
+                    .inactive-quantity {
+                        color: $text__color--blue;
+                        border: 1px solid $text__color--blue;
+                        background-color: $bg__color--light-blue;
+
+                        button {
+                            color: $text__color--blue;
+
+                            &:hover {
+                                cursor: url('https://i.ibb.co/7kskxYD/theo-superman.png'), auto;	
+                                color: $text__color--blue;
+                            }
+                        }
+                    }
                 }
 
                 .button__addToCart {
@@ -1746,6 +1809,13 @@ a {
                     &:hover {
                         text-decoration: none;
                         background-color: transparent;
+                    }
+
+                    &:disabled {
+                        cursor: default;
+                        color: $text__color--blue;
+                        background-color: $bg__color--light-blue;
+                        border-color: $text__color--blue;
                     }
                 }
                 
@@ -1857,6 +1927,15 @@ a {
             font-weight: $font-bold;
             padding: rem(10px) $padding;
             margin-top: rem(40px);
+
+            a {
+                color: $bg__color--grey;
+
+                &:hover {
+                    text-decoration: none;
+                    color: $bg__color--grey;
+                }
+            }
         }
     }
 

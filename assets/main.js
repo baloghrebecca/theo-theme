@@ -11,11 +11,12 @@ $(document).ready(function () {
     // LIVETICKER //
 
     const liveticker = document.querySelectorAll('#liveticker__red p');
-    const livetickerPurple = document.querySelectorAll('#liveticker__purple p')
+    const livetickerPurpleSize = document.querySelector('#liveticker__purple p span')
+    const livetickerPurple = document.querySelector('#liveticker__purple p')
     const livetickerRedSize = document.querySelector('#liveticker__red p span')
 
-    const livetickerRedSizeWidth = livetickerRedSize.clientWidth + 15;
-    const livetickerPurpleSizeWidth = livetickerRedSize.clientWidth + 50;
+    const livetickerRedSizeWidth = livetickerRedSize.clientWidth + 20;
+    const livetickerPurpleSizeWidth = livetickerPurpleSize.clientWidth + 20;
 
 
     const movementTimeline = gsap.timeline({
@@ -28,7 +29,7 @@ $(document).ready(function () {
 
     movementTimeline
         .set(liveticker, { x: 0 })
-        .to(liveticker, { x: -livetickerRedSizeWidth, duration: 5, ease: "linear" })
+        .to(liveticker, { x: -livetickerRedSizeWidth, duration: 4, ease: "linear" })
 
     movementTimeline2
         .set(livetickerPurple, { x: 0 })
@@ -537,7 +538,7 @@ $(document).ready(function () {
 
     })
 
-})
+
 
 
 //NOTIFY ME BUTTON INTEGRATION PRODUCT PAGE  https://help.backinstock.org/article/1588-using-a-custom-product-page-button//
@@ -545,8 +546,9 @@ $(document).ready(function () {
 
 let 
     addToCartButtonNotify = $('.button__addToCart'),
-    notifyMeButton = $('.BIS_trigger')
-    selectButton = $('.select__sizes')
+    notifyMeButton = $('.BIS_trigger'),
+    selectButton = $('.select__sizes'),
+    quantityInputButton = $('.product__page__form__quantity--field')
 
 
     selectButton.on('click', function(event) {
@@ -556,10 +558,33 @@ let
             addToCartButtonNotify.css('display', 'none')
             notifyMeButton.removeClass('inactive-notify')
             notifyMeButton.addClass('active-notify')
+            quantityInputButton.addClass('inactive-quantity')
         } else {
             addToCartButtonNotify.css('display', 'block')
             notifyMeButton.removeClass('active-notify')
             notifyMeButton.addClass('inactive-notify')
+            quantityInputButton.removeClass('inactive-quantity')
         }
         
     })
+
+
+
+//preselect variant
+
+let
+    sizeButtons = $('.js-preselect')
+
+
+    if (sizeButtons != null) {
+
+        let inventory = $(this).attr("data-inventory-quantity");
+        let buttonToPreselect = sizeButtons.find(element => element.attr("data-inventory-quantity") > 0);
+        console.log(buttonToPreselect, 'preselect this');
+        buttonToPreselect.prop("checked",true);
+    }
+
+
+
+
+})
