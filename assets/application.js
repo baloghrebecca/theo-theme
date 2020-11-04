@@ -35,20 +35,20 @@ var span = document.querySelector(".close");
  
 // When the user clicks on the button, open the modal
 link.onclick = function(event) {
-  console.log('HELLO!');
+
   event.preventDefault();
   modal.style.display = "block";
 }
 links.onclick = function(event) {
-  console.log('HELLO!');
+
   event.preventDefault();
   modal.style.display = "block";
 }
 
-console.log('sss', span);
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  console.log('cloded');
+
   modal.style.display = "none";
 }
 

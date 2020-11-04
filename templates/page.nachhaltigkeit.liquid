@@ -19,10 +19,12 @@
 <section id="production">
     <div class="production--headline">
        <h1>{{ page.metafields.global.2_headline }}</h1>
+       <p>Etwas über die Produktion...</p>
        <!-- <p>{{ page.metafields.global.2_text_1 }}</p> -->
     </div>
     <div class="production--images">
-       Bilder
+        {{ 'produktion_1.jpg' | asset_url | img_tag: 'Produktion' }}
+        {{ 'produktion_2.jpg' | asset_url | img_tag: 'Produktion' }}
     </div>
 </section>
 {% include 'tickerPurple' %}

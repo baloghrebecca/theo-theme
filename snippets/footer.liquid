@@ -48,17 +48,9 @@
         <div id="footer__social">
             <h3>SOCIAL</h3>
             <div class="footer__links">
-                {% for link in linklists.footer.links %}
-                {% assign child_list_handle = link.title | handleize %}
-                {% if linklists[child_list_handle].links != blank %}
-                <a class="footer__link" href="{{ link.url }}">{{ link.title }}</a>
-                [{% for childlink in linklists[child_list_handle].links %}
-                <a class="footer__link" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-                {% endfor %}]
-                {% else %}
-                <a class="footer__link" href="{{ link.url }}">{{ link.title }}</a>
-                {% endif %}
-                {% endfor %}
+               <a href="https://www.instagram.com/catchingtheo/" target="blank">Catching Theo</a>
+               <a href="https://www.instagram.com/theocarow" target="blank">Theo Carow</a>
+               <a href="https://www.tiktok.com/@theocarow" target="blank">Tik Tok</a>
             </div>
         </div>
     </div>

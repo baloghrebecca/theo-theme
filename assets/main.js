@@ -2,10 +2,10 @@ $(document).ready(function () {
 
     if (typeof jQuery == 'undefined') {
         console.log("Jquery not available");
-        }
-        else{
+    }
+    else {
         console.log('Jquery Ver:' + jQuery.fn.jquery);
-        }
+    }
 
 
     // LIVETICKER //
@@ -137,7 +137,7 @@ $(document).ready(function () {
     // PRODUCT IMAGE ROTATION //
 
     const products = document.querySelectorAll('.product')
-    var index = 0;
+    var indexRotation = 0;
 
     //add event listeners to all product objects in the array:
     for (var i = 0; i < products.length; i++) {
@@ -160,11 +160,10 @@ $(document).ready(function () {
             }
 
 
-            index = imageNumber
+            indexRotation = imageNumber
         }, false);
 
         products[i].addEventListener("touchmove", function (e) {
-            console.log('fired');
             let allImages = this.querySelectorAll('.product__image');
             const x = e.touches[0].clientX
             const width = e.currentTarget.offsetWidth
@@ -206,21 +205,27 @@ $(document).ready(function () {
 
     // IMAGE HEIGHT FIX //
 
-    let 
-    $productImages = $('.product__image '),
-    $imagesContainer = $('.product__image__wrapper')
+    let
+        $productImages = $('.product__image'),
+        $imagesContainer = $('.product__image__wrapper')
 
-    const changeContainerHeight = () => {
-        let imageHeight = $productImages[0].clientHeight
-        $imagesContainer.css('height', imageHeight)
-        console.log(imageHeight, $imagesContainer.clientHeight);
-    }
-    changeContainerHeight()
+    console.log($productImages, 'images????');
 
-    $( window ).resize(function() {
+    if ($productImages.length > 0) {
+        console.log('entered');
+        const changeContainerHeight = () => {
+            let imageHeight = $productImages[0].clientHeight
+            $imagesContainer.css('height', imageHeight)
+
+        }
+
         changeContainerHeight()
-      });
 
+        $(window).resize(function () {
+            changeContainerHeight()
+        });
+
+    }
 
 
     // ACCORDEON //
@@ -292,12 +297,12 @@ $(document).ready(function () {
     const $mobileMenu = $('#header--mobile')
     const $xMobile = $('#link__burger--mobile')
 
-    $burger.on('click', function(e) {
+    $burger.on('click', function (e) {
         e.preventDefault()
         $mobileMenu.css('left', '0%');
     })
 
-    $xMobile.on('click', function(e){
+    $xMobile.on('click', function (e) {
         e.preventDefault()
         $mobileMenu.css('left', '100%');
     })
@@ -318,7 +323,7 @@ $(document).ready(function () {
 
         quantityButtons[i].addEventListener("click", function (event) {
             let includesPlus = this.classList.value.includes('plus');
-            console.log('clicked quantity')
+
             if (includesPlus) {
                 if (parseInt(quantityField.value) >= maxValue) {
                     return
@@ -340,7 +345,7 @@ $(document).ready(function () {
 
     for (var i = 0; i < sizesFields.length; i++) {
         sizesFields[i].addEventListener("change", function (event) {
-            console.log('size chosen');
+
             maxValue = this.getAttribute('data-inventory-quantity');
             quantityField.setAttribute("max", maxValue);
             addToCartButton.disabled = false;
@@ -375,7 +380,7 @@ $(document).ready(function () {
         document.documentElement.scrollTop = 0;
     },
         onLineRemoved = function (event) {
-            console.log('removing it!!');
+
             event.preventDefault()
             event.stopPropagation()
             let
@@ -406,122 +411,127 @@ $(document).ready(function () {
         },
         onError = function (XMLHttpRequest, message) {
             let data = XMLHttpRequest.responseJSON
-            console.log(data.status + data.message)
+
         }
 
 
     const addToCartForm = document.querySelector('#AddToCartForm');
     const removeButtons = document.querySelectorAll('.cart__content .cart__remove__button')
 
-    console.log(removeButtons);
 
+        if (addToCartForm) {
 
-    addToCartForm.addEventListener('submit', onAddToCart, false);
+            addToCartForm.addEventListener('submit', onAddToCart, false);
+        }
+ 
 
     $(document).on('click', '.cart__content .cart__remove__button', onLineRemoved);
 
-})
 
-//BUY NOW //
 
-$('#product__page__sizes .js-buy-now').on('click', function (e) {
-    e.preventDefault()
+    //BUY NOW //
 
-    //add to cart + send to checkout page
-    $.ajax({
-        type: 'POST',
-        url: '/cart/add.js',
-        data: $(this).serialize(),
-        dataType: 'json',
-        success: function (data) {
-            window.open('/cart/checkout', '_blank');
-        },
-        error: function (data) {
-            return;
-        },
+    $('#product__page__sizes .js-buy-now').on('click', function (e) {
+        e.preventDefault()
+
+        //add to cart + send to checkout page
+        $.ajax({
+            type: 'POST',
+            url: '/cart/add.js',
+            data: $(this).serialize(),
+            dataType: 'json',
+            success: function (data) {
+                window.open('/cart/checkout', '_blank');
+            },
+            error: function (data) {
+                return;
+            },
+        });
     });
-});
 
-// CART QUANTITY //
+    // CART QUANTITY //
 
-let
-    quantityCartField = '.js-cart-quantity',
-    quantityButtons = '.js-cart-quantity-button',
-    quantityPickerContainer = '.cart__quantity--container'
-quantityPicker = {
+    let
+        quantityCartField = '.js-cart-quantity',
+        quantityButtons2 = '.js-cart-quantity-button',
+        quantityPickerContainer = '.cart__quantity--container'
+    quantityPicker = {
 
-    handleButtonClick: function (event) {
-        let
-            $button = $(this),
-            $picker = $button.closest(quantityPickerContainer),
-            $quantity = $picker.find(quantityCartField),
-            quantityValue = parseInt($quantity.val()),
-            includesPlus = $button.classList.value.includes('plus');
-        includesMinus = $button.classList.value.includes('minus');
+        handleButtonClick: function (event) {
+            let
+                $button = $(this),
+                $picker = $button.closest(quantityPickerContainer),
+                $quantity = $picker.find(quantityCartField),
+                quantityValue = parseInt($quantity.val()),
+                includesPlus = $button.classList.value.includes('plus');
+            includesMinus = $button.classList.value.includes('minus');
 
-        console.log($button);
 
-        if (includesPlus) {
-            console.log('enter plus');
-            $quantity.val(quantityValue + 1).change()
+            if (includesPlus) {
+
+                $quantity.val(quantityValue + 1).change()
+            }
+            if (includesMinus) {
+
+                $quantity.val(quantityValue - 1).change()
+            }
+        },
+
+        handleFieldChange: function (event) {
+
+        },
+        init: function () {
+            $(document).on('click', quantityButtons2, quantityPicker.handleButtonClick)
+            $(document).on('change', quantityCartField, quantityPicker.handleFieldChange)
         }
-        if (includesMinus) {
-            console.log('enter minus');
-            $quantity.val(quantityValue - 1).change()
-        }
-    },
 
-    handleFieldChange: function (event) {
-        console.log('changed quanitty!');
-    },
-    init: function () {
-        $(document).on('click', quantityButtons, quantityPicker.handleButtonClick)
-        $(document).on('change', quantityCartField, quantityPicker.handleFieldChange)
     }
 
-}
-
-quantityPicker.init()
+    quantityPicker.init()
 
 
 
 
-// PRODUCT SLIDESHOW //
+    // PRODUCT SLIDESHOW //
 
-const productImages = $('.product__page__img')
-const arrowLeft = $('.gallery-arrow-left')
-const arrowRight = $('.gallery-arrow-right')
+    const productImages = $('.product__page__img')
+    const arrowLeft = $('.gallery-arrow-left')
+    const arrowRight = $('.gallery-arrow-right')
 
-let index = 0;
+    let index = 0;
 
-arrowRight.on('click', function (event) {
-    event.preventDefault();
-    if (index >= productImages.length - 1) {
-        productImages[index].style.display = "none";
-        index = 0;
-        productImages[index].style.display = "block";
-    } else {
-        productImages[index].style.display = "none";
-        index++
-        productImages[index].style.display = "block";
-    }
+    arrowRight.on('click', function (event) {
+        event.preventDefault();
+        if (index >= productImages.length - 1) {
+            productImages[index].style.display = "none";
+            index = 0;
+            productImages[index].style.display = "block";
+        } else {
+            productImages[index].style.display = "none";
+            index++
+            productImages[index].style.display = "block";
+        }
+    })
+
+    arrowLeft.on('click', function (event) {
+        event.preventDefault();
+        if (index == 0) {
+            return;
+        }
+        if (index <= 0) {
+            productImages[index].style.display = "none";
+            index = 0;
+            productImages[index].style.display = "block";
+        } else {
+            productImages[index].style.display = "none";
+            index--
+            productImages[index].style.display = "block";
+        }
+
+    })
+
 })
 
-arrowLeft.on('click', function (event) {
-    event.preventDefault();
-    if (index == 0) {
-        return;
-    }
-    if (index <= 0) {
-        productImages[index].style.display = "none";
-        index = 0;
-        productImages[index].style.display = "block";
-    } else {
-        productImages[index].style.display = "none";
-        index--
-        productImages[index].style.display = "block";
-    }
 
-})
-
+//NOTIFY ME BUTTON INTEGRATION  https://help.backinstock.org/article/1588-using-a-custom-product-page-button//
 

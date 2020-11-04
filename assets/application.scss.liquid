@@ -1191,6 +1191,10 @@ a {
             flex: 0 0 auto; //cant expand can't shrink and stays it's size
             display: inline-block;
             margin-left: rem(50px);
+
+            a {
+                color: $text__color--purple;
+            }
         }
     }
 }
@@ -1934,6 +1938,14 @@ a {
 
     .production--images {
         padding-top: $margin__body;
+       display: grid;
+       grid-template-columns: repeat(2, 1fr);
+       grid-gap: rem(20px);
+
+        img {
+ 
+            display: inline-block;
+        }
     }
 
     @media screen and (max-width: $tablet) {
@@ -1975,4 +1987,19 @@ a {
         padding-top: $padding__page--tablet;
     }
 
+}
+
+#impressum {
+    @extend #faq;
+}
+
+
+#sizing {
+    @extend #faq;
+}
+
+//CART PAGE //
+
+.cart__page {
+    @extend #faq;
 }

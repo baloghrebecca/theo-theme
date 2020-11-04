@@ -1,8 +1,5 @@
-{% layout 'impressum' %}
-
-<div id="impressum-container">
-    <div class="back-button">
-        <a href="http://www.catchingtheo.com"><- Back</a>
-    </div>
-    {% section 'impressum' %}
+<div id="impressum">
+    <h1><span class="h1__filled">{{ page.title }}</span></h1>
+    <div>{{ page.content }}</div>
 </div> 
+{% include 'instagram' %}
