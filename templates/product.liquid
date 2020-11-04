@@ -186,7 +186,7 @@
               {% for variant in product.variants %}
               {% if variant.available %}
               <input id="{{ variant.id }}" class="select__sizes" type="radio" value="{{ variant.id }}" name="id"
-                data-inventory-quantity="{{variant.inventory_quantity}}"></input>
+                data-inventory-quantity="{{variant.inventory_quantity}}" {% if variant == product.selected_or_first_available_variant %} checked {% endif %}></input>
               <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
               {% else %}
               <input id="{{ variant.id }}" class="select__sizes sold__out" type="radio" value="{{ variant.id }}"
@@ -214,12 +214,12 @@
           </div>
           <button type="submit" class="button__addToCart" name="add" id="AddToCart" disabled>Add to cart</button>
 
-         <!-- <p>  {{ current_variant.id }} id! </p>
+   
 
-          <a href="#" class="BIS_trigger" data-product-data="{{ product | json | escape }}"
+          <a href="#" class="BIS_trigger inactive-notify" data-product-data="{{ product | json | escape }}"
             data-variant-id="{{ variant.id }}">
-            <div class="button__addToCart">Notify Me</div> 
-          </a> -->
+           Notify Me
+          </a>
 
         </div>
 

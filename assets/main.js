@@ -331,6 +331,7 @@ $(document).ready(function () {
                 quantityField.value = parseInt(quantityField.value) + 1
             } else {
                 if (parseInt(quantityField.value) <= minValue) {
+                
                     return
                 }
                 quantityField.value = parseInt(quantityField.value) - 1
@@ -353,6 +354,12 @@ $(document).ready(function () {
             if (parseInt(quantityField.value) > maxValue) {
                 quantityField.value = maxValue
                 quantityTextField.innerHTML = maxValue
+
+            }
+
+            if (parseInt(quantityField.value) < minValue) {
+                quantityField.value = minValue
+                quantityTextField.innerHTML = minValue
 
             }
 
@@ -533,5 +540,26 @@ $(document).ready(function () {
 })
 
 
-//NOTIFY ME BUTTON INTEGRATION  https://help.backinstock.org/article/1588-using-a-custom-product-page-button//
+//NOTIFY ME BUTTON INTEGRATION PRODUCT PAGE  https://help.backinstock.org/article/1588-using-a-custom-product-page-button//
 
+
+let 
+    addToCartButtonNotify = $('.button__addToCart'),
+    notifyMeButton = $('.BIS_trigger')
+    selectButton = $('.select__sizes')
+
+
+    selectButton.on('click', function(event) {
+        let inventory = $(this).attr("data-inventory-quantity");
+        if (inventory == 0) {
+            console.log('entered this');
+            addToCartButtonNotify.css('display', 'none')
+            notifyMeButton.removeClass('inactive-notify')
+            notifyMeButton.addClass('active-notify')
+        } else {
+            addToCartButtonNotify.css('display', 'block')
+            notifyMeButton.removeClass('active-notify')
+            notifyMeButton.addClass('inactive-notify')
+        }
+        
+    })

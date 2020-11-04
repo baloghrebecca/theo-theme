@@ -93,6 +93,7 @@ html {
 }
 
 body {
+    cursor: url('https://i.ibb.co/7kskxYD/theo-superman.png'), auto;	
     overflow: hidden;
     font-family: $font-mono;
     font-weight: $font-regular;
@@ -233,6 +234,7 @@ a {
     border: 1px solid transparent;
 }
 
+
 .button-radio {
     font-size: $text__size--mobile;
     transition: 0.2s ease all;
@@ -275,6 +277,8 @@ a {
         border-color: $text__color--red;
     }
 }
+
+
 
 /* END GENERAL STYLING */
 
@@ -605,19 +609,19 @@ a {
                     align-items: center;
                 }
 
-                // .button__cart {
-                //     margin-bottom: rem(5px);
-                //     border: 1px solid $bg__color--cyan;
-                //     background-color: $text__color--blue;
-                //     color: $bg__color--grey;
-                //     font-size: $text__size--mini;
-                //     padding: rem(5px) rem(10px);
+                .button__cart {
+                    margin-bottom: rem(5px);
+                    border: 1px solid $bg__color--cyan;
+                    background-color: $text__color--blue;
+                    color: $bg__color--grey;
+                    font-size: $text__size--mini;
+                    padding: rem(5px) rem(10px);
 
-                //     &:hover {
-                //         background-color: transparent;
-                //         color: $text__color--blue;
-                //     }
-                // }
+                    &:hover {
+                        background-color: transparent;
+                        color: $text__color--blue;
+                    }
+                }
 
                 .shopify-payment-button {
                     z-index: 9999;
@@ -682,15 +686,28 @@ a {
                         width: 45%;
                         @extend .visually-hidden;
 
+                        a {
+
+                            &:hover {
+                                color: $bg__color--grey;
+                            }
+                        }
+
                         & + label {
                             @extend .button-radio;
                             background-color: $bg__color--light-blue;
                             border-color: $text__color--blue;
                             color: $text__color--blue;
 
+                            a {
+                                &:hover {
+                                    color: $bg__color--grey;
+                                }
+                            }
+
                             &:hover {
                                 background-color: $text__color--blue;
-                                color: $bg__color--grey;
+                                color: $bg__color--light-blue;
                             }
                         }
 
@@ -1716,6 +1733,22 @@ a {
                         border-color: $text__color--blue;
                     }
                 }
+
+                .inactive-notify {
+                    display: none;
+                }
+                
+                .active-notify {
+                    @extend .button__addToCart;
+                    text-align: center;
+                    border-radius: $border-radius;
+
+                    &:hover {
+                        text-decoration: none;
+                        background-color: transparent;
+                    }
+                }
+                
             }
         }
     }

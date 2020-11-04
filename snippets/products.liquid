@@ -109,13 +109,16 @@
                                 {% else %}
                                 <input id="{{ variant.id }}" class="select__sizes js-buy-now sold__out" type="radio" value="{{ variant.id }}" name="id"
                                   data-inventory-quantity="{{variant.inventory_quantity}}"></input>
-                                <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
+                                <label class="" for="{{ variant.id }}">
+                                    <a href="#" class="BIS_trigger notify__button" data-product-data="{{ product | json | escape }}"
+                                    data-variant-id="{{ variant.id }}">
+                                    {{ variant.options[0] }} 
+                                  </a></label>
                                 {% endif %}
                                 {% endfor %}
                               </div>
                             {{ current_variant.price | money }}
                             <input type="hidden" id="Quantity" name="quantity" value="1" min="1"> 
-                            <!-- <button type="submit" name="add" id="AddToCart">Add to cart</button> -->
                         </form>
 
 
