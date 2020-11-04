@@ -9,7 +9,7 @@ $(document).ready(function () {
     const livetickerRedSize = document.querySelector('#liveticker__red p span')
 
     const livetickerRedSizeWidth = livetickerRedSize.clientWidth + 15;
-    const livetickerPurpleSizeWidth = livetickerRedSize.clientWidth + 15;
+    const livetickerPurpleSizeWidth = livetickerRedSize.clientWidth + 50;
 
 
     const movementTimeline = gsap.timeline({
@@ -198,6 +198,25 @@ $(document).ready(function () {
     }
 
 
+    // IMAGE HEIGHT FIX //
+
+    let 
+    $productImages = $('.product__image '),
+    $imagesContainer = $('.product__image__wrapper')
+
+    const changeContainerHeight = () => {
+        let imageHeight = $productImages[0].clientHeight
+        $imagesContainer.css('height', imageHeight)
+        console.log(imageHeight, $imagesContainer.clientHeight);
+    }
+    changeContainerHeight()
+
+    $( window ).resize(function() {
+        changeContainerHeight()
+      });
+
+
+
     // ACCORDEON //
 
     const panels = document.querySelectorAll('.product__page__panel__container')
@@ -258,6 +277,24 @@ $(document).ready(function () {
     //     event.preventDefault();
     //     toggleCart()
     // }, false)
+
+
+
+    // MOBILE NAVIGATION //
+
+    const $burger = $('.link__burger')
+    const $mobileMenu = $('#header--mobile')
+    const $xMobile = $('#link__burger--mobile')
+
+    $burger.on('click', function(e) {
+        e.preventDefault()
+        $mobileMenu.css('left', '0%');
+    })
+
+    $xMobile.on('click', function(e){
+        e.preventDefault()
+        $mobileMenu.css('left', '100%');
+    })
 
 
     // QUANTITY  //
@@ -401,14 +438,46 @@ $('#product__page__sizes .js-buy-now').on('click', function (e) {
 
 // CART QUANTITY //
 
+let
+    quantityCartField = '.js-cart-quantity',
+    quantityButtons = '.js-cart-quantity-button',
+    quantityPickerContainer = '.cart__quantity--container'
+quantityPicker = {
+
+    handleButtonClick: function (event) {
+        let
+            $button = $(this),
+            $picker = $button.closest(quantityPickerContainer),
+            $quantity = $picker.find(quantityCartField),
+            quantityValue = parseInt($quantity.val()),
+            includesPlus = $button.classList.value.includes('plus');
+        includesMinus = $button.classList.value.includes('minus');
+
+        console.log($button);
+
+        if (includesPlus) {
+            console.log('enter plus');
+            $quantity.val(quantityValue + 1).change()
+        }
+        if (includesMinus) {
+            console.log('enter minus');
+            $quantity.val(quantityValue - 1).change()
+        }
+    },
+
+    handleFieldChange: function (event) {
+        console.log('changed quanitty!');
+    },
+    init: function () {
+        $(document).on('click', quantityButtons, quantityPicker.handleButtonClick)
+        $(document).on('change', quantityCartField, quantityPicker.handleFieldChange)
+    }
+
+}
+
+quantityPicker.init()
 
 
-// $('.js-button-quantity-cart').on('click', function (event) {
-//     event.preventDefault()
-//     console.log('what is this', this.classList.value.includes('plus'));
-
-//     $( "input[name='update']" ).trigger( "click" );
-// })
 
 
 // PRODUCT SLIDESHOW //
@@ -421,7 +490,7 @@ let index = 0;
 
 arrowRight.on('click', function (event) {
     event.preventDefault();
-    if (index >= productImages.length-1) {
+    if (index >= productImages.length - 1) {
         productImages[index].style.display = "none";
         index = 0;
         productImages[index].style.display = "block";
@@ -436,7 +505,7 @@ arrowLeft.on('click', function (event) {
     event.preventDefault();
     if (index == 0) {
         return;
-    } 
+    }
     if (index <= 0) {
         productImages[index].style.display = "none";
         index = 0;
@@ -448,3 +517,5 @@ arrowLeft.on('click', function (event) {
     }
 
 })
+
+

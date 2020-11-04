@@ -1,0 +1,6 @@
+<div class="cart__quantity--container">
+    <input type="hidden" class="cart__quantity--field js-cart-quantity" id="{{ id }}" name="{{ name }}" value=" {{ value }}" min=" {{ min }}" max="{{ max }}">
+    <button class="cart__button--minus js-cart-quantity-button" {% if value == min %}disabled{% endif %} type="button">&ndash;</button>
+    <p class="quantitiy_cart_button--text">{{ value }}</p> 
+    <button class="cart_button--plus js-cart-quantity-button" {% if value == max %}disabled{% endif %} type="button">+</button>
+  </div>

@@ -49,11 +49,74 @@
 
   </nav> 
 
-
-
-
 </header>
 
-<!-- TODO: 
-LOGIN/ACCOUNT/REGISTER
-LOGO CHANGE -->
+
+<!-- {% include 'shippingBanner' %} -->
+<header id="header--mobile">
+
+  <nav id="navigation__header--mobile">
+    <a href="/" id="link__logo--mobile">{{ 'rainbow-theo-final.png' | asset_url | img_tag: 'Logo' }}</a>
+
+    <a href="" id="link__burger--mobile">
+      <svg width="45" height="47" viewBox="0 0 45 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0.707107" y1="1.29289" x2="43.7071" y2="44.2929" stroke="#E6332A" stroke-width="2"/>
+        <line x1="43.7071" y1="2.70711" x2="0.707107" y2="45.7071" stroke="#E6332A" stroke-width="2"/>
+        </svg>          
+    </a>
+  </nav>
+
+  <nav id="navigation--mobile">
+
+    <a href="/pages/about" class="link__text--mobile">{{ 'header.nav.about' | t }}</a>
+    <a href="/pages/nachhaltigkeit" class="link__text--mobile">{{ 'header.nav.nachhaltigkeit' | t }}</a>
+
+    <a href="/faq" class="link__text">{{ 'header.nav.faq' | t }}</a>
+    <a href="/about" class="link__text">Login</a>
+    
+    <a href="/cart" class="link__cart--mobile">
+
+      <svg width="48" height="44" viewBox="0 0 48 44" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M37.96 8.06999H2.14998C1.72998 8.06999 1.41998 8.45999 1.51998 8.86999L6.73998 30.13C6.97998 31.09 7.83998 31.77 8.82998 31.77H30.45C31.44 31.77 32.31 31.09 32.54 30.13L39.45 1.97999C39.52 1.68999 39.78 1.48999 40.08 1.48999H46.19"
+          stroke="#E6332A" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+        <path
+          d="M29.53 42C30.8389 42 31.9 40.9389 31.9 39.63C31.9 38.3211 30.8389 37.26 29.53 37.26C28.2211 37.26 27.16 38.3211 27.16 39.63C27.16 40.9389 28.2211 42 29.53 42Z"
+          stroke="#E6332A" stroke-width="3" stroke-miterlimit="10" />
+        <path
+          d="M8.96998 42C10.2789 42 11.34 40.9389 11.34 39.63C11.34 38.3211 10.2789 37.26 8.96998 37.26C7.66106 37.26 6.59998 38.3211 6.59998 39.63C6.59998 40.9389 7.66106 42 8.96998 42Z"
+          stroke="#E6332A" stroke-width="3" stroke-miterlimit="10" />
+        <path d="M9.19 16.5H29.19" stroke="#E6332A" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path d="M11.19 23.5H27.19" stroke="#E6332A" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </a>
+
+    <!-- {% if shop.customer_accounts_enabled %}
+    {% if customer %}
+    <a href="/account">account</a>
+    {{ 'log out'  | customer_logout_link }}
+    {% else %}
+    {{ 'log in ' | customer_login_link }}
+    {{ 'register' | customer_register_link }}
+    {% endif %}
+    {% endif %} -->
+
+  </nav> 
+
+  <nav id="navigation__footer--mobile">
+
+    <div id="navigation__footer--mobile--icons">
+    <a href="https://www.instagram.com/catchingtheo" target="blank" class="link__text--mobile">Instagram</a>
+    <a href="http://www.tiktok.com/@theocarow" target="blank"  class="link__text--mobile">Tik Tok</a>
+  </div>
+
+  <div id="navigation__footer--mobile--impressum">
+    <a href="/faq" class="link__text">Datenschutz</a>
+    <a href="/faq" class="link__text">Impressum</a>
+  </div>
+  </nav> 
+
+</header>
