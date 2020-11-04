@@ -1944,3 +1944,35 @@ a {
         }
     }
 }
+
+
+
+
+
+// FAQ //
+
+#faq {
+    background-color: $bg__color--grey;
+    padding: $margin__body;
+    padding-top: $padding__page--start;
+
+    h1 {
+        margin: 0;
+
+        .h1__filled {
+            display: block;
+            margin-bottom: rem(50px);
+        }
+
+    }
+
+    @media screen and (max-width: $tablet) {
+        padding-top: $padding__page--tablet;
+    }
+
+    @media screen and (max-width: $phone) {
+        padding: $padding__mobile;
+        padding-top: $padding__page--tablet;
+    }
+
+}

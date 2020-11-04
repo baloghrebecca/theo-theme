@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+    if (typeof jQuery == 'undefined') {
+        console.log("Jquery not available");
+        }
+        else{
+        console.log('Jquery Ver:' + jQuery.fn.jquery);
+        }
 
 
     // LIVETICKER //
