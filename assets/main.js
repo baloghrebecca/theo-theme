@@ -113,7 +113,7 @@ $(document).ready(function () {
 
     //HEAD ROTATION ON SCROLL//
 
-    const head = document.querySelector('#intro__head--container')
+    const head = document.querySelector('#intro__head--container img')
     const intro = document.querySelector('#intro')
 
     gsap.registerPlugin(ScrollTrigger);
@@ -332,7 +332,7 @@ $(document).ready(function () {
                 quantityField.value = parseInt(quantityField.value) + 1
             } else {
                 if (parseInt(quantityField.value) <= minValue) {
-                
+
                     return
                 }
                 quantityField.value = parseInt(quantityField.value) - 1
@@ -427,11 +427,11 @@ $(document).ready(function () {
     const removeButtons = document.querySelectorAll('.cart__content .cart__remove__button')
 
 
-        if (addToCartForm) {
+    if (addToCartForm) {
 
-            addToCartForm.addEventListener('submit', onAddToCart, false);
-        }
- 
+        addToCartForm.addEventListener('submit', onAddToCart, false);
+    }
+
 
     $(document).on('click', '.cart__content .cart__remove__button', onLineRemoved);
 
@@ -541,17 +541,17 @@ $(document).ready(function () {
 
 
 
-//NOTIFY ME BUTTON INTEGRATION PRODUCT PAGE  https://help.backinstock.org/article/1588-using-a-custom-product-page-button//
+    //NOTIFY ME BUTTON INTEGRATION PRODUCT PAGE  https://help.backinstock.org/article/1588-using-a-custom-product-page-button//
 
 
-let 
-    addToCartButtonNotify = $('.button__addToCart'),
-    notifyMeButton = $('.BIS_trigger'),
-    selectButton = $('.select__sizes'),
-    quantityInputButton = $('.product__page__form__quantity--field')
+    let
+        addToCartButtonNotify = $('.button__addToCart'),
+        notifyMeButton = $('.BIS_trigger'),
+        selectButton = $('.select__sizes'),
+        quantityInputButton = $('.product__page__form__quantity--field')
 
 
-    selectButton.on('click', function(event) {
+    selectButton.on('click', function (event) {
         let inventory = $(this).attr("data-inventory-quantity");
         if (inventory == 0) {
             console.log('entered this');
@@ -565,26 +565,8 @@ let
             notifyMeButton.addClass('inactive-notify')
             quantityInputButton.removeClass('inactive-quantity')
         }
-        
+
     })
-
-
-
-//preselect variant
-
-let
-    sizeButtons = $('.js-preselect')
-
-
-    if (sizeButtons != null) {
-
-        let inventory = $(this).attr("data-inventory-quantity");
-        let buttonToPreselect = sizeButtons.find(element => element.attr("data-inventory-quantity") > 0);
-        console.log(buttonToPreselect, 'preselect this');
-        buttonToPreselect.prop("checked",true);
-    }
-
-
 
 
 })

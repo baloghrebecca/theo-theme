@@ -41,7 +41,7 @@ $padding__mobile: rem(20px) rem(20px);
 $padding__top: rem(100px);
 $padding__top--tablet: rem(90px);
 $padding__top--mobile: rem(65px);
-$padding__page--start: rem(360px);
+$padding__page--start: rem(280px);
 $padding__page--tablet: rem(220px);
 $padding__button: rem(10px) rem(30px);
 
@@ -93,7 +93,7 @@ html {
 }
 
 body {
-    cursor: url('https://i.ibb.co/7kskxYD/theo-superman.png'), auto;	
+    cursor: url("https://i.ibb.co/7kskxYD/theo-superman.png"), auto;
     overflow: hidden;
     font-family: $font-mono;
     font-weight: $font-regular;
@@ -217,7 +217,6 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
 
 .visually-hidden {
@@ -234,7 +233,6 @@ a {
     border: 1px solid transparent;
 }
 
-
 .button-radio {
     font-size: $text__size--mobile;
     transition: 0.2s ease all;
@@ -250,16 +248,17 @@ a {
 }
 
 .cta {
+    font-weight: $font-bold;
     text-transform: uppercase;
     transition: 0.2s ease all;
     padding: $padding__button;
-    background-color: transparent;
-    color: $text__color--red;
+    background-color: $text__color--red;
+    color: $bg__color--grey;
     border: 1px solid $text__color--red;
 
     &:hover {
-        background-color: $text__color--red;
-        color: $bg__color--grey;
+        background-color: transparent;
+        color: $text__color--red;
     }
 }
 
@@ -271,14 +270,19 @@ a {
     color: $text__color--red;
     border: 1px solid $text__color--red;
 
+    a {
+        &:hover {
+            text-decoration: none;
+            color: $bg__color--grey;
+        }
+    }
+
     &:hover {
-        background-color: transparent;
-        color: $text__color--red;
+        background-color: $text__color--red;
+        color: $bg__color--grey;
         border-color: $text__color--red;
     }
 }
-
-
 
 /* END GENERAL STYLING */
 
@@ -445,16 +449,12 @@ a {
     // right: -100%;
     left: 100%;
 
-
     #navigation__header--mobile {
-
         @extend .display-flex-horizontal;
         width: 100%;
         #link__logo--mobile {
-            
             display: block;
             img {
-
                 width: rem(150px);
             }
         }
@@ -485,14 +485,13 @@ a {
 
     #navigation__footer--mobile {
         @extend .display-flex-vertical;
-        
+
         #navigation__footer--mobile--icons {
             margin-bottom: rem(20px);
 
             a {
                 display: block;
             }
-    
         }
 
         #navigation__footer--mobile--impressum {
@@ -501,9 +500,7 @@ a {
             }
         }
     }
-
 }
-
 
 //SHIPPING BANNER //
 #shipping__banner {
@@ -515,7 +512,7 @@ a {
     z-index: 99999;
     padding: 0 $margin__body;
 
-    p { 
+    p {
         font-size: $text__size--mobile;
         margin: 0;
     }
@@ -528,24 +525,22 @@ a {
             width: 40%;
         }
     }
-    
+
     @media screen and (max-width: $phone) {
         padding: 0 rem(20px);
-        
+
         p {
             font-size: $text__size--mini;
             line-height: 0;
         }
 
         #shipping__close {
-    
             svg {
                 width: 30%;
             }
         }
     }
 }
-
 
 /* END HEADER */
 
@@ -604,6 +599,7 @@ a {
                 width: 80%;
                 margin-bottom: rem(25px);
                 position: relative;
+                height: 350px;
 
                 img {
                     opacity: 0;
@@ -730,7 +726,6 @@ a {
                         @extend .visually-hidden;
 
                         a {
-
                             &:hover {
                                 color: $bg__color--grey;
                             }
@@ -926,10 +921,12 @@ a {
     display: flex;
 
     #intro__head--container {
+        padding-left: 20px;
         width: 35%;
         position: relative;
 
         img {
+            width: 80%;
             // position: absolute;
             // top: 50%;
             // transform: translateY(-50%);
@@ -1773,7 +1770,7 @@ a {
                             color: $text__color--blue;
 
                             &:hover {
-                                cursor: url('https://i.ibb.co/7kskxYD/theo-superman.png'), auto;	
+                                cursor: url("https://i.ibb.co/7kskxYD/theo-superman.png"), auto;
                                 color: $text__color--blue;
                             }
                         }
@@ -1800,7 +1797,7 @@ a {
                 .inactive-notify {
                     display: none;
                 }
-                
+
                 .active-notify {
                     @extend .button__addToCart;
                     text-align: center;
@@ -1818,7 +1815,6 @@ a {
                         border-color: $text__color--blue;
                     }
                 }
-                
             }
         }
     }
@@ -1842,7 +1838,7 @@ a {
 #about {
     background-color: $bg__color--light-blue;
     padding: $margin__body;
-    padding-top: rem(320px);
+    padding-top: $padding__page--start;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2050,12 +2046,11 @@ a {
 
     .production--images {
         padding-top: $margin__body;
-       display: grid;
-       grid-template-columns: repeat(2, 1fr);
-       grid-gap: rem(20px);
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: rem(20px);
 
         img {
- 
             display: inline-block;
         }
     }
@@ -2068,10 +2063,6 @@ a {
         }
     }
 }
-
-
-
-
 
 // FAQ //
 
@@ -2087,7 +2078,6 @@ a {
             display: block;
             margin-bottom: rem(50px);
         }
-
     }
 
     @media screen and (max-width: $tablet) {
@@ -2098,13 +2088,11 @@ a {
         padding: $padding__mobile;
         padding-top: $padding__page--tablet;
     }
-
 }
 
 #impressum {
     @extend #faq;
 }
-
 
 #sizing {
     @extend #faq;
@@ -2114,4 +2102,86 @@ a {
 
 .cart__page {
     @extend #faq;
+}
+
+//LOGIN PAGE //
+
+.login__register {
+    padding: $margin__body;
+    padding-top: $padding__page--start;
+    background-color: $bg__color--grey;
+    @extend .display-flex-horizontal;
+    justify-content: flex-start;
+    align-items: flex-start;
+    grid-column-gap: rem(70px);
+
+    .login__register--image {
+        width: 70%;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .login__register--form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        margin: 0 auto;
+        width: 60%;
+        height: 100%;
+
+        h1 {
+            margin-top: 0;
+        }
+
+        input {
+            margin-top: rem(10px);
+            margin-bottom: rem(20px);
+        }
+
+        label {
+            font-weight: $font-bold;
+            text-transform: uppercase;
+            margin-bottom: rem(20px);
+        }
+
+        button {
+            margin-top: rem(20px);
+        }
+
+        a {
+            display: inline-block;
+         
+        }
+
+        .reset__pw__link {
+            margin-top: rem(50px);
+        }
+    }
+
+    @media screen and (max-width: $tablet) {
+        padding: $padding__mobile;
+        padding-top: $padding__page--tablet;
+
+        .login__register--image {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: $phone) {
+        .login__register--form {
+            width: 100%;
+        }
+    }
+}
+
+
+.shopify-challenge__container {
+    background-color: $bg__color--grey;
+    padding: $margin__body;
+    padding-top: $padding__page--start;
 }

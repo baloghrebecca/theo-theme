@@ -186,7 +186,8 @@
               {% for variant in product.variants %}
               {% if variant.available %}
               <input id="{{ variant.id }}" class="select__sizes js-preselect" type="radio" value="{{ variant.id }}" name="id"
-                data-inventory-quantity="{{variant.inventory_quantity}}"            
+                data-inventory-quantity="{{variant.inventory_quantity}}"       
+                {% if variant == product.selected_or_first_available_variant %} checked {% endif %} 
                 ></input>
               <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
               {% else %}
@@ -213,7 +214,7 @@
               <button class="quantitiy__button--plus js-button-quantity" type="button">+</button>
             </div>
           </div>
-          <button type="submit" class="button__addToCart" name="add" id="AddToCart" disabled>Add to cart</button>
+          <button type="submit" class="button__addToCart" name="add" id="AddToCart">Add to cart</button>
 
    
 

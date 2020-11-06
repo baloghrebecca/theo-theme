@@ -1,1 +1,32 @@
 <!-- /templates/customers/login.liquid -->
+<div class="login__register">
+<div class="login__register--image">
+    {{ 'mood-about.png' | asset_url | img_tag: 'Logo' }}
+</div>
+
+    <div class="login__register--form">
+        <div>
+        <h1><span>Login</span></h1>
+        {% form 'customer_login' %} {{ form.errors | default_errors }}
+
+        <label for="customer_email">E-Mail Adresse</label>
+        <input type="email" name="customer[email]" />
+
+        <label for="customer_password">Passwort</label>
+        <input type="password" name="customer[password]" />
+
+        <!-- <input type="submit" value="Sign In" /> -->
+        <button class="cta" type="submit">Anmelden</button>
+        <button class="cta--secondary" type="button"><a href="/account/register">Registieren</a></button>
+        {% endform %}
+
+        </div>
+        <div >
+            
+        <a class="reset__pw__link" href="">Passwort vergessen?</a>
+        </div>
+    </div>
+</div>
+
+{% include 'tickerPurple' %}
+{% include 'instagram' %}
