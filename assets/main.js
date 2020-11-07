@@ -170,6 +170,7 @@ $(document).ready(function () {
             const width = e.currentTarget.offsetWidth
             const percentage = x / width
             const imageNumber = Math.floor(percentage * allImages.length)
+  
 
             allImages.forEach(image => {
                 image.style.opacity = 0;
@@ -192,6 +193,7 @@ $(document).ready(function () {
 
         }, false);
         products[i].addEventListener("touchend", function (event) {
+
             let allImages = this.querySelectorAll('.product__image');
             allImages.forEach(image => {
                 image.style.opacity = 0;
@@ -256,6 +258,7 @@ $(document).ready(function () {
     // CART SLIDE OUT //
 
     const cartIcon = document.querySelector('.link__cart')
+    const cartIconMobile = document.querySelector('.link__cart--mobile')
     const cartCloseIcon = document.querySelector('#cart__close')
     const cart = document.querySelector('#cart')
     const cartContainer = document.querySelector('.cart__products__container')
@@ -276,6 +279,11 @@ $(document).ready(function () {
     }
 
     cartIcon.addEventListener('click', function (event) {
+        event.preventDefault();
+        toggleCart()
+    }, false)
+
+    cartIconMobile.addEventListener('click', function (event) {
         event.preventDefault();
         toggleCart()
     }, false)
@@ -448,13 +456,41 @@ $(document).ready(function () {
             url: '/cart/add.js',
             data: $(this).serialize(),
             dataType: 'json',
-            success: function (data) {
-                window.open('/cart/checkout', '_blank');
-            },
+            success: onCartUpdated, 
             error: function (data) {
                 return;
             },
-        });
+        })
+
+        openCartOnAdd()
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0;
+
+        onCartUpdated = function (event) {
+            //jQuery Ajax Call
+            $.ajax({
+                type: 'GET', //method
+                url: '/cart',
+                context: document.body,
+                success: function (context) {
+                    let
+                        $dataCartContents = $(context).find('.cart__page--content'),
+                        dataCartHtml = $dataCartContents.html(),
+                        dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
+                        $miniCartContents = $('.cart__content');
+
+                    $miniCartContents.html(dataCartHtml)
+
+                },
+                error: onError,
+            });
+
+
+        },
+        onError = function (XMLHttpRequest, message) {
+            let data = XMLHttpRequest.responseJSON
+
+        }
     });
 
     // CART QUANTITY //

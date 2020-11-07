@@ -99,13 +99,17 @@
 
 
 
-                        <form action="/cart/add" method="post" enctype="multipart/form-data" id="buyNowForm">
+                        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartFormHome">
                             <div id="product__page__sizes">
                                 {% for variant in product.variants %}
+
+
                                 {% if variant.available %}
                                 <input id="{{ variant.id }}" class="select__sizes js-buy-now" type="radio" value="{{ variant.id }}" name="id"
                                   data-inventory-quantity="{{variant.inventory_quantity}}"></input>
                                 <label class="" for="{{ variant.id }}">{{ variant.options[0] }}</label>
+
+
                                 {% else %}
                                 <input id="{{ variant.id }}" class="select__sizes js-buy-now sold__out" type="radio" value="{{ variant.id }}" name="id"
                                   data-inventory-quantity="{{variant.inventory_quantity}}"></input>
