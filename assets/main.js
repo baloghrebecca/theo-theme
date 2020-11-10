@@ -393,8 +393,7 @@ $(document).ready(function () {
         });
 
         openCartOnAdd()
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0;
+   
     },
         onLineRemoved = function (event) {
 
@@ -514,7 +513,9 @@ $(document).ready(function () {
                 $quantity.val(quantityValue + 1).change()
             }
             if (includesMinus) {
-
+                if (quantityValue === 1) {
+                    return
+                } 
                 $quantity.val(quantityValue - 1).change()
             }
             console.log(quantityValue);
@@ -641,5 +642,18 @@ $(document).ready(function () {
         $registerForm.css('display', 'none');
     })
 
+    //LOTTIE //
+
+
+
+    let svgContainer2 = document.querySelector('#lottieLogo');
+    let animItem2 = bodymovin.loadAnimation({
+      wrapper: svgContainer2,
+      animType: 'svg',
+    //   preserveAspectRatio: 'none',
+      loop: true,
+      path: "https://assets4.lottiefiles.com/packages/lf20_NZLrr8.json"
+    });
+    
 
 })

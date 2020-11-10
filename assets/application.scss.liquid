@@ -638,8 +638,8 @@ a {
                 width: 80%;
                 margin-bottom: rem(25px);
                 position: relative;
-                height: 450px;
-                min-height: 350px;
+                height: 5,0px;
+                min-height: 450px;
 
                 img {
                     opacity: 0;
@@ -1755,6 +1755,12 @@ a {
 
         #product__page__metafields {
             margin-top: rem(45px);
+            a {
+                text-decoration: underline;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
 
             .product__page__panel__container {
                 transition: all 0.3s ease;
@@ -2209,7 +2215,7 @@ a {
         padding-top: $margin__body;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: rem(20px);
+        grid-gap: rem(25px);
 
         img {
             display: inline-block;
@@ -2221,6 +2227,13 @@ a {
 
         .production--images {
             padding-top: $margin__body;
+        }
+    }
+
+    @media screen and (max-width: $phone) {
+
+        .production--images {
+            padding-top: rem(20px);
         }
     }
 }
@@ -2430,6 +2443,6 @@ a {
     @extend #faq;
 }
 
-#not__found {
+.not__found {
     @extend #faq;
 }
