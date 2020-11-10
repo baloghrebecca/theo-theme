@@ -23,10 +23,20 @@
         </div>
         <div >
             
-        <a class="reset__pw__link" href="">Passwort vergessen?</a>
+        <a class="reset__pw__link" href="/account/login#recover" >Passwort vergessen?</a>
         </div>
     </div>
-</div>
 
-{% include 'tickerPurple' %}
-{% include 'instagram' %}
+    <div class="login__register--forgotPW">
+        <h1><span>Passwort vergessen</span></h1>
+        {% form 'recover_customer_password' %} {{ form.errors | default_errors
+        }}
+        
+        <label for="customer_email">E-Mail Adresse</label>
+        <input type="email" name="email" />
+        
+        <input class="cta" type="submit" value="Abschicken" />
+        
+        {% endform %} 
+    </div>
+</div>

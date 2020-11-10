@@ -167,7 +167,7 @@ button {
 
 input {
     background-color: transparent;
-    border: 2px solid $bg__color--red;
+    border: 1.5px solid $bg__color--red;
     color: $bg__color--red;
     font-family: $font-mono;
     border-radius: $border-radius;
@@ -203,6 +203,10 @@ a {
     &:hover {
         text-decoration: underline;
     }
+}
+
+.align-right {
+    text-align: right;
 }
 
 .display-flex-horizontal {
@@ -291,12 +295,12 @@ a {
     }
 
     &:hover {
-        color: $text__color--red;
+        color: $bg__color--grey;
         a {
-            color: $bg__color--red;
+            color: $bg__color--grey;
         }
 
-        background-color: transparent;
+        background-color: $text__color--red;
         border-color: $text__color--red;
     }
 }
@@ -343,14 +347,11 @@ a {
 
             .link__burger {
                 margin-top: rem(20px);
-                
-    
+
                 // @media screen and (max-width: $phone) {
                 //     margin-top: rem(0px);
                 // }
             }
-
-
         }
 
         .link__text {
@@ -505,10 +506,7 @@ a {
                     width: rem(35px);
                 }
             }
-
         }
-
-   
     }
 
     #navigation--mobile {
@@ -640,8 +638,8 @@ a {
                 width: 80%;
                 margin-bottom: rem(25px);
                 position: relative;
-                height: 350px;
-                min-height: 200px;
+                height: 450px;
+                min-height: 350px;
 
                 img {
                     opacity: 0;
@@ -1306,11 +1304,13 @@ a {
 #cart {
     transition: all 0.5s ease;
     z-index: 1000;
-    position: fixed;
-    top: -100%;
+    // position: fixed;
+    position: absolute;
+    top: -150%;
     left: 0;
     right: 0;
-    padding: rem(66px) $padding;
+    padding: rem(40px) $padding;
+    padding-top: rem(15px);
     background-color: $bg__color--red;
     color: $bg__color--grey;
 
@@ -1360,14 +1360,41 @@ a {
         }
 
         .cart__product--title {
-            width: 300px;
+            width: 400px;
 
-            @media screen and (max-width: $tablet) {
-                width: 100px;
+            @media screen and (max-width: $desktop__smallest) {
+                
+                width: 250px;
             }
+
+            @media screen and (max-width: $phone) {
+                width: 110px;
+            }
+
 
             img {
                 width: 10%;
+            }
+
+            button {
+                text-transform: lowercase;
+                padding: 0 rem(5px);
+                border: 0;
+
+                &:hover {
+                    background-color: $bg__color--grey;
+                    color: $text__color--red;
+
+                    a {
+                        text-decoration: none;
+                        color: red;
+                    }
+                }
+
+                @media screen and (max-width: $phone) {
+                    font-size: $text__size--mini;
+                    padding: 0 0;
+                }
             }
         }
 
@@ -1376,9 +1403,61 @@ a {
         }
 
         .cart__product--color {
+            font-size: $text__size--mobile;
             @media screen and (max-width: $tablet) {
-                display: block;
+                // display: block;
                 font-size: $text__size--mini;
+            }
+
+            @media screen and (max-width: $phone) {
+                display: none;
+            }
+        }
+
+        .cart__quantity--container {
+            padding: 0 rem(40px);
+            display: flex;
+            align-items: center;
+            line-height: 0;
+            background-color: $bg__color--grey;
+            color: $text__color--red;
+            
+            p {
+                margin: 0;
+            }
+
+            .js-cart-quantity-button {
+                padding: 0;
+                padding: 0 rem(10px);
+                border: 0;
+            }
+
+            .cart__button--minus {
+                margin-right: rem(20px);
+            }
+
+            .cart__button--plus {
+                margin-left: rem(20px);
+            }
+
+            @media screen and (max-width: $tablet) {
+                padding: 0 rem(5px);
+
+                .js-cart-quantity-button {
+                    padding: 0;
+                    padding: 0 rem(5px);
+                    border: 0;
+                }
+    
+
+                .cart__button--minus {
+                    margin-right: 0;
+                }
+    
+                .cart__button--plus {
+                    margin-left: 0;
+                }
+
             }
         }
 
@@ -1405,6 +1484,12 @@ a {
             input {
                 border-top-right-radius: $border-radius;
             }
+
+           .cart__quantity--container {
+            
+            border-top-right-radius: $border-radius;
+
+            }
         }
 
         &:nth-last-child(2) {
@@ -1416,14 +1501,31 @@ a {
                 border-bottom-right-radius: $border-radius;
             }
 
+            .cart__quantity--container {
+            
+                border-bottom-right-radius: $border-radius;
+    
+                }
+
             @media screen and (max-width: $desktop__smallest) {
                 border-bottom: 1px solid $bg__color--grey;
+            }
+        }
+
+
+        @media screen and (max-width: $phone) {
+
+            padding-left: rem(5px);
+
+            p {
+                align-self: center;
+                margin: rem(5px) 0;
             }
         }
     }
 
     .cart__buttons {
-        padding-top: $padding__top;
+        padding-top: $padding__top/2;
         width: 100%;
         display: flex;
         justify-content: flex-end;
@@ -1446,11 +1548,12 @@ a {
                 }
 
                 @media screen and (max-width: $phone) {
-                    padding: rem(10px) rem(20px) rem(10px) rem(20px);
+                    padding: rem(5px) rem(15px);
                 }
             }
 
             .button__filled {
+                font-weight: $font-bold;
                 color: $text__color--red;
                 background-color: $bg__color--grey;
                 border-radius: $border-radius;
@@ -1462,7 +1565,7 @@ a {
                     border-color: $bg__color--grey;
                 }
                 @media screen and (max-width: $phone) {
-                    padding: rem(10px) rem(20px) rem(10px) rem(20px);
+                    padding: rem(5px) rem(15px);
                 }
             }
         }
@@ -1487,7 +1590,16 @@ a {
     }
 
     @media screen and (max-width: $tablet) {
+        border: 1px solid $bg__color--grey;
+        font-size: $text__size--mini;
         padding: rem(40px) $padding;
+    }
+
+    @media screen and (max-width: $phone) {
+        padding: rem(10px) rem(10px);
+        padding-top: rem(15px); 
+        padding-top: rem(15px); 
+            position: fixed;
     }
 }
 
@@ -1497,6 +1609,11 @@ a {
     p {
         display: inline;
         padding: 1rem;
+
+        @media screen and (max-width: $phone) {
+        
+            padding: 0.5rem;
+        }
     }
 }
 
@@ -1895,6 +2012,7 @@ a {
         }
     }
 
+
     .about__img--container {
         width: 40%;
         // padding-right: rem(100px);
@@ -1980,10 +2098,9 @@ a {
             padding-top: 0;
             padding-bottom: 0;
 
-
-        button {
-            margin-top: rem(20px);
-        }
+            button {
+                margin-top: rem(20px);
+            }
         }
     }
 
@@ -2025,6 +2142,13 @@ a {
         .sustain__text {
             width: 80%;
             padding-left: $margin__body;
+
+            a {
+                text-decoration: underline;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
         }
 
         @media screen and (max-width: $tablet) {
@@ -2078,7 +2202,7 @@ a {
     }
 
     .production--headline {
-        width: 50%;
+        width: 100%;
     }
 
     .production--images {
@@ -2108,8 +2232,15 @@ a {
     padding: $margin__body;
     padding-top: $padding__page--start;
 
+    a {
+        text-decoration: underline;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+
     h1 {
-        margin-bottom: 0;
+        // margin-bottom: 0;
 
         .h1__filled {
             display: block;
@@ -2192,11 +2323,19 @@ a {
 
         a {
             display: inline-block;
-         
         }
 
         .reset__pw__link {
             margin-top: rem(50px);
+        }
+    }
+
+    .login__register--forgotPW {
+        @extend .login__register--form;
+        display: none;
+
+        input[type="submit"] {
+          cursor: pointer;
         }
     }
 
@@ -2216,9 +2355,81 @@ a {
     }
 }
 
-
 .shopify-challenge__container {
     background-color: $bg__color--grey;
     padding: $margin__body;
     padding-top: $padding__page--start;
+    // margin: 0;
+    max-width: 100%;
+    margin: 0 auto;
+
+    form {
+        max-width: 350px;
+        margin: 0 auto;
+        width: 50%;
+    }
+}
+
+//ACCOUNT PAGE//
+
+#account {
+    @extend #faq;
+
+    #account__headline {
+        a {
+            display: block;
+        }
+        @extend .display-flex-horizontal;
+        align-items: baseline;
+    }
+
+    #account__details {
+        @extend .display-flex-horizontal;
+        align-items: baseline;
+
+        #account__orders {
+            width: 70%;
+
+            #all__orders {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: rem(10px);
+            }
+        }
+
+        #account__address {
+            margin-right: rem(40px);
+            width: 30%;
+        }
+    }
+
+    @media screen and (max-width: $tablet) {
+        #account__details {
+            flex-direction: column;
+
+            #account__orders {
+                width: 100%;
+
+                #all__orders {
+                    font-size: $text__size--mini;
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-gap: rem(20px);
+                }
+            }
+
+            #account__address {
+                margin-right: rem(40px);
+                width: 100%;
+            }
+        }
+    }
+}
+
+#account__activation {
+    @extend #faq;
+}
+
+#not__found {
+    @extend #faq;
 }

@@ -1,1 +1,66 @@
 <!-- /templates/customers/account.liquid -->
+<section id="account">
+    <div id="account__headline">
+        <h1><span class="h1__filled">Hi, {{ customer.first_name }}</span></h1> {{ 'Log out' | customer_logout_link }}
+    </div>
+
+    <div id="account__details">
+        <div id="account__address">
+            <h1>Profil</h1>
+            <p>{{ customer.first_name }} {{ customer.last_name }} <br>
+                {{ customer.email }}</p>
+
+
+            {% if customer.default_address %}
+            <p>
+                <strong>Adresse</strong><br />
+                {{ customer.default_address.address1 }}<br>
+                {% if customer.default_address.address2 != "" %}
+                {{ customer.default_address.address2 }}<br>
+                {% endif %}
+                {{ customer.default_address.zip }} {{ customer.default_address.city}}<br>
+                {% if address.province_code %}{{ customer.default_address.province_code }},
+                {% endif %}{{ customer.default_address.country }}<br>
+
+                {{ customer.default_address.phone }}
+                {% endif %}
+            </p>
+        </div>
+
+        <div id="account__orders">
+            <h1>Bestellungen</h1>
+            <div id="all__orders">
+                <div class="order--nr">
+                    <p><strong>Bestellnr.</strong></p>
+                    {% for order in customer.orders %}
+                    <p>{{ order.name | link_to: order.customer_url }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="order--date">
+                    <p><strong>Datum</strong></p>
+                    {% for order in customer.orders %}
+
+                    {% assign date = order.created_at | split: ' ' %}
+                    <p>{{date[0] }}</p>
+                    {% endfor %}
+                </div>
+                <div>
+                    <p><strong>Status</strong></p>
+                    {% for order in customer.orders %}
+                    <p>{{ order.fulfillment_status }}</p>
+                    {% endfor %}
+                </div>
+
+                <div>
+                    <p><strong>Preis</strong></p>
+                    {% for order in customer.orders %}
+                    <p>{{order.total_price}}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+</section>

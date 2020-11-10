@@ -170,7 +170,7 @@ $(document).ready(function () {
             const width = e.currentTarget.offsetWidth
             const percentage = x / width
             const imageNumber = Math.floor(percentage * allImages.length)
-  
+
 
             allImages.forEach(image => {
                 image.style.opacity = 0;
@@ -212,10 +212,8 @@ $(document).ready(function () {
         $productImages = $('.product__image'),
         $imagesContainer = $('.product__image__wrapper')
 
-    console.log($productImages, 'images????');
-
     if ($productImages.length > 0) {
-        console.log('entered');
+
         const changeContainerHeight = () => {
             let imageHeight = $productImages[0].clientHeight
             $imagesContainer.css('height', imageHeight)
@@ -262,21 +260,28 @@ $(document).ready(function () {
     const cartCloseIcon = document.querySelector('#cart__close')
     const cart = document.querySelector('#cart')
     const cartContainer = document.querySelector('.cart__products__container')
-    const continueShoppingButton = document.querySelector('.cart__continueShopping')
+
 
     const toggleCart = () => {
         let cartTop = cart.style.top
 
         if (cartTop == '0px') {
-            cart.style.top = '-100%'
+            cart.style.top = '-120%'
         } else {
             cart.style.top = 0
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0;
         }
     }
 
     const openCartOnAdd = () => {
         cart.style.top = 0
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0;
     }
+
+
+
 
     cartIcon.addEventListener('click', function (event) {
         event.preventDefault();
@@ -293,10 +298,6 @@ $(document).ready(function () {
         toggleCart()
     }, false)
 
-    // continueShoppingButton.addEventListener('click', function (event) {
-    //     event.preventDefault();
-    //     toggleCart()
-    // }, false)
 
 
 
@@ -427,7 +428,6 @@ $(document).ready(function () {
         },
         onError = function (XMLHttpRequest, message) {
             let data = XMLHttpRequest.responseJSON
-
         }
 
 
@@ -436,7 +436,6 @@ $(document).ready(function () {
 
 
     if (addToCartForm) {
-
         addToCartForm.addEventListener('submit', onAddToCart, false);
     }
 
@@ -456,7 +455,7 @@ $(document).ready(function () {
             url: '/cart/add.js',
             data: $(this).serialize(),
             dataType: 'json',
-            success: onCartUpdated, 
+            success: onCartUpdated,
             error: function (data) {
                 return;
             },
@@ -487,10 +486,10 @@ $(document).ready(function () {
 
 
         },
-        onError = function (XMLHttpRequest, message) {
-            let data = XMLHttpRequest.responseJSON
+            onError = function (XMLHttpRequest, message) {
+                let data = XMLHttpRequest.responseJSON
 
-        }
+            }
     });
 
     // CART QUANTITY //
@@ -499,29 +498,53 @@ $(document).ready(function () {
         quantityCartField = '.js-cart-quantity',
         quantityButtons2 = '.js-cart-quantity-button',
         quantityPickerContainer = '.cart__quantity--container'
+
     quantityPicker = {
 
         handleButtonClick: function (event) {
             let
                 $button = $(this),
-                $picker = $button.closest(quantityPickerContainer),
-                $quantity = $picker.find(quantityCartField),
+                $pickerContainer = $button.closest('.cart__quantity--container'),
+                $quantity = $pickerContainer.find('.js-cart-quantity'),
                 quantityValue = parseInt($quantity.val()),
-                includesPlus = $button.classList.value.includes('plus');
-            includesMinus = $button.classList.value.includes('minus');
-
+                includesPlus = $button.attr('class').includes('plus'),
+                includesMinus = $button.attr('class').includes('minus');
 
             if (includesPlus) {
-
                 $quantity.val(quantityValue + 1).change()
             }
             if (includesMinus) {
 
                 $quantity.val(quantityValue - 1).change()
             }
+            console.log(quantityValue);
         },
 
         handleFieldChange: function (event) {
+            let
+                $field = $(this),
+                $pickerContainer = $field.closest('.cart__quantity--container'),
+                $quantityText = $pickerContainer.find('.quantitiy_cart_button--text'),
+                shouldDisableMinus = parseInt(this.value) === 1,
+                shouldDisablePlus = parseInt(this.value) === parseInt($field.attr('max')),
+                $minusButton = $pickerContainer.find('.cart__button--minus'),
+                $plusButton = $pickerContainer.find('.cart__button--plus');
+
+            $quantityText.text(this.value);
+
+            if (shouldDisableMinus) {
+                $minusButton.prop('disabled', true)
+            }
+            else if ($minusButton.prop('disabled') === true) {
+                $minusButton.prop('disabled', false)
+            }
+
+            if (shouldDisablePlus) {
+                $plusButton.prop('disabled', true)
+            }
+            else if ($plusButton.prop('disabled') === true) {
+                $plusButton.prop('disabled', false)
+            }
 
         },
         init: function () {
@@ -590,7 +613,7 @@ $(document).ready(function () {
     selectButton.on('click', function (event) {
         let inventory = $(this).attr("data-inventory-quantity");
         if (inventory == 0) {
-            console.log('entered this');
+
             addToCartButtonNotify.css('display', 'none')
             notifyMeButton.removeClass('inactive-notify')
             notifyMeButton.addClass('active-notify')
@@ -602,6 +625,20 @@ $(document).ready(function () {
             quantityInputButton.removeClass('inactive-quantity')
         }
 
+    })
+
+
+    //PASSWORD RECOVERY
+
+    let
+        $passwordResetLink = $('.reset__pw__link'),
+        $passwordResetForm = $('.login__register--forgotPW'),
+        $registerForm = $('.login__register--form');
+
+    $passwordResetLink.on('click', function (event) {
+        event.preventDefault()
+        $passwordResetForm.css('display', 'block');
+        $registerForm.css('display', 'none');
     })
 
 
