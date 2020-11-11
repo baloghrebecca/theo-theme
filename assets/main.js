@@ -570,11 +570,14 @@ $(document).ready(function () {
 
     arrowRight.on('click', function (event) {
         event.preventDefault();
-        if (index >= productImages.length - 1) {
+     
+        if (index >= productImages.length - 2) {
+            console.log('fired end!!');
             productImages[index].style.display = "none";
             index = 0;
             productImages[index].style.display = "block";
         } else {
+            console.log('fired plus!!');
             productImages[index].style.display = "none";
             index++
             productImages[index].style.display = "block";
@@ -646,7 +649,7 @@ $(document).ready(function () {
 
 
 
-    let svgContainer2 = document.querySelector('#lottieLogo');
+    let svgContainer2 = document.querySelector('#logoLottie');
     let animItem2 = bodymovin.loadAnimation({
       wrapper: svgContainer2,
       animType: 'svg',

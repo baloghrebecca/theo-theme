@@ -33,7 +33,7 @@
                 <div class="order--nr">
                     <p><strong>Bestellnr.</strong></p>
                     {% for order in customer.orders %}
-                    <p>{{ order.name | link_to: order.customer_url }}</p>
+                    <p>{{ order.name }}</p>
                     {% endfor %}
                 </div>
 

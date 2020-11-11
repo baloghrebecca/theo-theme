@@ -347,6 +347,7 @@ a {
 
             .link__burger {
                 margin-top: rem(20px);
+                text-align: center;
 
                 // @media screen and (max-width: $phone) {
                 //     margin-top: rem(0px);
@@ -410,10 +411,13 @@ a {
             }
 
             svg {
-                width: 85%;
+                // width: 85%;
             }
 
             @media screen and (max-width: $desktop__small) {
+                text-align: right;
+                width: 7%;
+
                 svg {
                     width: 60%;
                 }
@@ -444,7 +448,7 @@ a {
                     margin-top: rem(20px);
 
                     svg {
-                        width: 90%;
+                        // width: 90%;
                     }
                 }
             }
@@ -485,6 +489,7 @@ a {
 
     #navigation__header--mobile {
         @extend .display-flex-horizontal;
+        align-items: baseline;
         width: 100%;
         #link__logo--mobile {
             display: block;
@@ -504,6 +509,7 @@ a {
                 z-index: 9999999;
                 svg {
                     width: rem(35px);
+                    margin-bottom: rem(5px);
                 }
             }
         }
@@ -589,7 +595,7 @@ a {
     background-image: url("../assets/001-2.png");
     background-size: cover;
     padding: $margin__body;
-    padding-top: $padding__page--tablet * 1.5;
+    padding-top: $padding__page--tablet * 1.2;
     position: relative;
     padding-bottom: $padding__top;
     margin-bottom: rem(-10px);
@@ -638,8 +644,8 @@ a {
                 width: 80%;
                 margin-bottom: rem(25px);
                 position: relative;
-                height: 5,0px;
-                min-height: 450px;
+                height: 550px;
+                min-height: 500px;
 
                 img {
                     opacity: 0;
@@ -674,10 +680,10 @@ a {
                     display: flex;
 
                     .product__icon {
-                        // margin-right: rem(8px);
+                        margin-right: rem(5px);
 
                         svg {
-                            width: 82%;
+                            // width: 82%;
                         }
                     }
                 }
@@ -919,6 +925,7 @@ a {
 
         @media screen and (max-width: $phone) {
             grid-template-columns: 1fr;
+            grid-row-gap: rem(0px);
         }
     }
 
@@ -933,7 +940,7 @@ a {
     }
 
     @media screen and (max-width: $phone) {
-        padding-top: rem(170px);
+        padding-top: rem(50px);
     }
 }
 
@@ -1082,6 +1089,15 @@ a {
                 padding: rem(10px) rem(20px);
                 border-radius: $border-radius;
                 background-color: $bg__color--grey;
+                text-align: center;
+                cursor: pointer;
+
+                a {
+                    color: $text__color--blue;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
 
                 p {
                     text-align: center;
@@ -1590,7 +1606,7 @@ a {
     }
 
     @media screen and (max-width: $tablet) {
-        border: 1px solid $bg__color--grey;
+        // border: 1px solid $bg__color--grey;
         font-size: $text__size--mini;
         padding: rem(40px) $padding;
     }

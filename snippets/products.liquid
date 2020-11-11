@@ -9,7 +9,7 @@
                 <div class="product__image__wrapper">
                    
                     {% for image in product.images limit:8 %}
-                    <img class="product__image" src="{{ image.src | product_img_url: 'master' }}">
+                    <img class="product__image" src="{{ image.src | product_img_url: 'grande' }}">
 
                     {% endfor %}
                 </div>

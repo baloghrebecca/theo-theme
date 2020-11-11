@@ -7,7 +7,7 @@
     <div id="image__gallery">
 
       {% for image in product.images offset:8%}
-      <img class="product__page__img" src="{{ image.src | img_url: 'master' }}" alt="{{ image.alt | escape }}">
+      <img class="product__page__img" src="{{ image.src | img_url: 'grande' }}" alt="{{ image.alt | escape }}">
       {% endfor %}
 
       <div id="image__gallery--arrows">
@@ -251,6 +251,7 @@
         <p class="product__page__panel__title"><span>Transparency</span> <span
             class="product__page__panel__more">+</span></p>
         <div class="product__page__panel">
+          <br />
           {{ product.metafields.global.transparency }}
         </div>
       </div>
