@@ -43,6 +43,7 @@ $padding__top--tablet: rem(90px);
 $padding__top--mobile: rem(65px);
 $padding__page--start: rem(280px);
 $padding__page--tablet: rem(220px);
+$padding__page--mobile: rem(180px);
 $padding__button: rem(10px) rem(30px);
 
 /* Break points*/
@@ -332,6 +333,7 @@ a {
         #link__logo {
             transition: all 0.3s ease;
             width: rem(240px);
+            margin-left: rem(40px);
 
             @media screen and (max-width: $desktop__small) {
                 width: rem(200px);
@@ -339,6 +341,7 @@ a {
 
             @media screen and (max-width: $phone) {
                 width: rem(150px);
+                margin-left: rem(0px);
             }
         }
 
@@ -347,6 +350,7 @@ a {
 
             .link__burger {
                 margin-top: rem(20px);
+                margin-right: rem(10px);
                 text-align: center;
 
                 // @media screen and (max-width: $phone) {
@@ -595,7 +599,7 @@ a {
     background-image: url("../assets/001-2.png");
     background-size: cover;
     padding: $margin__body;
-    padding-top: $padding__page--tablet * 1.2;
+    padding-top: $padding__page--tablet * 1.1;
     position: relative;
     padding-bottom: $padding__top;
     margin-bottom: rem(-10px);
@@ -617,7 +621,7 @@ a {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-column-gap: rem(35px);
-        grid-row-gap: 5%;
+        grid-row-gap: rem(10px);
 
         .product {
             width: 100%;
@@ -663,6 +667,10 @@ a {
 
                 .visible {
                     opacity: 1;
+                }
+
+                @media screen and (max-width: $desktop__small) {
+                    min-height: 350px;
                 }
 
                 @media screen and (max-width: $phone) {
@@ -920,7 +928,7 @@ a {
         @media screen and (max-width: $desktop__smallest) {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            grid-row-gap: rem(35px);
+            grid-row-gap: rem(10px);
         }
 
         @media screen and (max-width: $phone) {
@@ -940,7 +948,7 @@ a {
     }
 
     @media screen and (max-width: $phone) {
-        padding-top: rem(50px);
+        padding-top: rem(150px);
     }
 }
 
@@ -1355,10 +1363,26 @@ a {
                     stroke-width: 3;
                     width: rem(20px);
                 }
+
+                @media screen and (max-width: $phone) {
+                    stroke-width: 4;
+                    width: rem(30px);
+                    margin-top: rem(18px);
+                    margin-bottom: rem(10px);
+                }
             }
 
             &:hover {
                 transform: rotate(90deg);
+            }
+        }
+
+        @media screen and (max-width: $phone) {
+
+            margin-bottom: rem(5px);
+            h1 {
+                margin: 0;
+                font-size: $text__size--headline__tablet;
             }
         }
     }
@@ -1375,18 +1399,37 @@ a {
             border-bottom: 1px solid $bg__color--grey;
         }
 
+        .cart__size--item {
+            @media screen and (max-width: $phone) {
+               display: none;
+            }
+        }
+        
+        .cart__price--item {
+            @media screen and (max-width: $phone) {
+               margin-right: rem(20px);
+             }
+        }
+
         .cart__product--title {
             width: 400px;
 
+            .cart__product--color--mobile {
+                display: none;
+            }
+
             @media screen and (max-width: $desktop__smallest) {
-                
                 width: 250px;
             }
 
             @media screen and (max-width: $phone) {
-                width: 110px;
+                .cart__product--color--mobile {
+                    display: block;
+                    margin-top: -7px;
+                    font-size: 10px;
+                    margin-left: rem(23px);
+                }
             }
-
 
             img {
                 width: 10%;
@@ -1408,7 +1451,7 @@ a {
                 }
 
                 @media screen and (max-width: $phone) {
-                    font-size: $text__size--mini;
+                    font-size: $text__size--small;
                     padding: 0 0;
                 }
             }
@@ -1437,7 +1480,7 @@ a {
             line-height: 0;
             background-color: $bg__color--grey;
             color: $text__color--red;
-            
+
             p {
                 margin: 0;
             }
@@ -1464,17 +1507,18 @@ a {
                     padding: 0 rem(5px);
                     border: 0;
                 }
-    
 
                 .cart__button--minus {
                     margin-right: 0;
                 }
-    
+
                 .cart__button--plus {
                     margin-left: 0;
                 }
-
             }
+
+
+         
         }
 
         input {
@@ -1501,10 +1545,12 @@ a {
                 border-top-right-radius: $border-radius;
             }
 
-           .cart__quantity--container {
-            
-            border-top-right-radius: $border-radius;
+            .cart__quantity--container {
+                border-top-right-radius: $border-radius;
 
+                @media screen and (max-width: $phone) {
+                    border-top-right-radius: 0.63rem;
+                }
             }
         }
 
@@ -1518,21 +1564,24 @@ a {
             }
 
             .cart__quantity--container {
-            
                 border-bottom-right-radius: $border-radius;
-    
+
+                @media screen and (max-width: $phone) {
+                    border-bottom-right-radius: 0.63rem;
+                    
                 }
+            }
 
             @media screen and (max-width: $desktop__smallest) {
-                border-bottom: 1px solid $bg__color--grey;
+                border-bottom: 2px solid $bg__color--grey;
             }
+
+
         }
 
-
         @media screen and (max-width: $phone) {
-
             padding-left: rem(5px);
-
+            border-bottom: none;
             p {
                 align-self: center;
                 margin: rem(5px) 0;
@@ -1565,6 +1614,7 @@ a {
 
                 @media screen and (max-width: $phone) {
                     padding: rem(5px) rem(15px);
+         
                 }
             }
 
@@ -1581,17 +1631,26 @@ a {
                     border-color: $bg__color--grey;
                 }
                 @media screen and (max-width: $phone) {
-                    padding: rem(5px) rem(15px);
+                    width: 100%;
+                    padding: rem(10px) rem(15px);
                 }
             }
+
+            @media screen and (max-width: $phone) {
+    
+                width: 100%;
+            }
+
         }
         @media screen and (max-width: $desktop__smallest) {
             padding-top: $padding__top--mobile;
         }
+
         @media screen and (max-width: $phone) {
             padding-top: rem(20px);
             display: flex;
             justify-content: space-between;
+            width: 100%;
         }
     }
 
@@ -1607,15 +1666,15 @@ a {
 
     @media screen and (max-width: $tablet) {
         // border: 1px solid $bg__color--grey;
-        font-size: $text__size--mini;
+        font-size: $text__size--small;
         padding: rem(40px) $padding;
     }
 
     @media screen and (max-width: $phone) {
         padding: rem(10px) rem(10px);
-        padding-top: rem(15px); 
-        padding-top: rem(15px); 
-            position: fixed;
+        padding-top: rem(15px);
+        padding-bottom: rem(20px);
+        position: fixed;
     }
 }
 
@@ -1627,8 +1686,7 @@ a {
         padding: 1rem;
 
         @media screen and (max-width: $phone) {
-        
-            padding: 0.5rem;
+            padding: 1rem;
         }
     }
 }
@@ -1911,8 +1969,8 @@ a {
                         border: 1px solid $text__color--red;
                         border-radius: $border-radius;
                         padding: $padding__button;
-                        padding-top: rem(15px);
-                        padding-bottom: rem(15px);
+                        padding-top: 0.85rem;
+                        padding-bottom: 0.85rem;
 
                         button {
                             padding: 0;
@@ -1932,14 +1990,14 @@ a {
 
                         @media screen and (max-width: $desktop__smallest) {
                             padding: 0 (10px);
-                            padding-top: rem(15px);
-                            padding-bottom: rem(15px);
+                            padding-top: 0.85rem;
+                            padding-bottom: 0.85rem;
                         }
 
                         @media screen and (max-width: $phone) {
                             padding: 0 (20px);
-                            padding-top: rem(15px);
-                            padding-bottom: rem(15px);
+                            padding-top: 0.85rem;
+                            padding-bottom: 0.85rem;
                         }
                     }
 
@@ -2008,7 +2066,7 @@ a {
     @media screen and (max-width: $phone) {
         background: linear-gradient(180deg, $bg__color--light-blue 0%, #efe7de 100.1%);
         padding: $padding__mobile;
-        padding-top: $padding__page--tablet;
+        padding-top: $padding__page--mobile;
         grid-template-columns: 1fr;
     }
 }
@@ -2034,7 +2092,6 @@ a {
         }
     }
 
-
     .about__img--container {
         width: 40%;
         // padding-right: rem(100px);
@@ -2059,8 +2116,8 @@ a {
 
     @media screen and (max-width: $phone) {
         padding: $padding__mobile;
-        padding-top: $padding__page--tablet;
-
+        padding-top: $padding__page--mobile;
+   
         .about__img--container {
             width: 70%;
             padding-right: 0;
@@ -2129,7 +2186,7 @@ a {
     @media screen and (max-width: $phone) {
         padding: $padding__mobile;
         padding-top: $padding__mobile;
-
+  
         .about__img--container {
             width: 70%;
             padding-right: 0;
@@ -2193,6 +2250,7 @@ a {
         @media screen and (max-width: $phone) {
             display: block;
 
+
             .sustain__img--container {
                 margin: 0 auto;
                 width: 80%;
@@ -2247,7 +2305,6 @@ a {
     }
 
     @media screen and (max-width: $phone) {
-
         .production--images {
             padding-top: rem(20px);
         }
@@ -2283,7 +2340,7 @@ a {
 
     @media screen and (max-width: $phone) {
         padding: $padding__mobile;
-        padding-top: $padding__page--tablet;
+        padding-top: $padding__page--mobile;
     }
 }
 
@@ -2364,7 +2421,7 @@ a {
         display: none;
 
         input[type="submit"] {
-          cursor: pointer;
+            cursor: pointer;
         }
     }
 
@@ -2461,4 +2518,9 @@ a {
 
 .not__found {
     @extend #faq;
+}
+
+.icon__text {
+    display: block;
+    margin-right: rem(10px);
 }

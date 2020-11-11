@@ -42,6 +42,9 @@ $(document).ready(function () {
     const logo = document.querySelector('#link__logo');
     const burger = document.querySelector('.link__burger');
 
+    let $cartDiv = $('#cart')
+    let $cartCloseIcon = $('#cart__close')
+
     let windowWidth = window.innerWidth
     let scrollPosition = 0;
     let ticking = false;
@@ -62,9 +65,11 @@ $(document).ready(function () {
             }
 
             if (windowWidth < 550) {
-                navigation.style.top = "15px"
+                navigation.style.top = "5px"
                 logo.style.width = '120px'
                 burger.style.marginTop = '10px'
+                $cartDiv.css('padding-top', '0')
+                $cartDiv.css('margin-top', '-10px')
             }
 
         } else {
@@ -89,6 +94,8 @@ $(document).ready(function () {
                 navigation.style.top = "50px"
                 logo.style.width = '150px'
                 burger.style.marginTop = '20px'
+                $cartDiv.css('padding-top', '15px')
+                $cartDiv.css('margin-top', '0px')
             }
 
 
@@ -156,8 +163,10 @@ $(document).ready(function () {
                 image.style.opacity = 0;
             })
 
-            if (imageNumber < allImagesLength) {
+            if (imageNumber < allImagesLength-1) {
                 allImages[imageNumber].style.opacity = 1
+            } else {
+                allImages[0].style.opacity = 1
             }
 
 
@@ -177,7 +186,10 @@ $(document).ready(function () {
             })
 
             if (imageNumber < allImages.length) {
+
                 allImages[imageNumber].style.opacity = 1
+            } else {
+                allImages[0].style.opacity = 1
             }
 
         }, false);
@@ -393,7 +405,7 @@ $(document).ready(function () {
         });
 
         openCartOnAdd()
-   
+
     },
         onLineRemoved = function (event) {
 
@@ -515,7 +527,7 @@ $(document).ready(function () {
             if (includesMinus) {
                 if (quantityValue === 1) {
                     return
-                } 
+                }
                 $quantity.val(quantityValue - 1).change()
             }
             console.log(quantityValue);
@@ -570,8 +582,8 @@ $(document).ready(function () {
 
     arrowRight.on('click', function (event) {
         event.preventDefault();
-     
-        if (index >= productImages.length - 2) {
+
+        if (index >= productImages.length - 1) {
             console.log('fired end!!');
             productImages[index].style.display = "none";
             index = 0;
@@ -651,12 +663,16 @@ $(document).ready(function () {
 
     let svgContainer2 = document.querySelector('#logoLottie');
     let animItem2 = bodymovin.loadAnimation({
-      wrapper: svgContainer2,
-      animType: 'svg',
-    //   preserveAspectRatio: 'none',
-      loop: true,
-      path: "https://assets4.lottiefiles.com/packages/lf20_NZLrr8.json"
+        wrapper: svgContainer2,
+        animType: 'svg',
+        //   preserveAspectRatio: 'none',
+        loop: true,
+        path: "https://assets4.lottiefiles.com/packages/lf20_NZLrr8.json"
     });
-    
+
+
+
+
+
 
 })

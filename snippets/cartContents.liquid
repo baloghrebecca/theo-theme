@@ -8,15 +8,16 @@
       <button><a class="cart__remove__button"
         href="/cart/change?line={{ forloop.index }}&amp;quantity=0">x</a></button> <a
         href="{{ item.url }}">{{ item.product.title }} <span
-          class="cart__product--color">({{ item.options_with_values[1].value }})</span></a>
-      <!-- <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}"> -->
+          class="cart__product--color">({{ item.options_with_values[1].value }})</span>
+          <span
+          class="cart__product--color--mobile">{{ item.options_with_values[1].value }} | {{ item.options_with_values[0].value }}</span></a>
     </p>
 
-    <p>
+    <p class="cart__size--item">
       <!-- {{ item.options_with_values[0].name }}  -->
       {{ item.options_with_values[0].value }}</p>
 
-    <p> €{{ item.line_price | money }}
+    <p class="cart__price--item"> €{{ item.line_price | money }}
       {% for discount in item.discounts %}{{ discount.title }}{% endfor %}</p>
     {% assign quantity_id = 'updates_' | append: item.key %}
     {% include 'quantityPickerCart' with name: 'updates[]', id: quantity_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity %}
