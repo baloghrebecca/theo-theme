@@ -43,11 +43,9 @@ $(document).ready(function () {
     const burger = document.querySelector('.link__burger');
 
     let $cartDiv = $('#cart')
-    let $cartCloseIcon = $('#cart__close')
 
     let windowWidth = window.innerWidth
     let scrollPosition = 0;
-    let ticking = false;
 
     const resizingHeaderData = () => {
 
@@ -70,6 +68,7 @@ $(document).ready(function () {
                 burger.style.marginTop = '10px'
                 $cartDiv.css('padding-top', '0')
                 $cartDiv.css('margin-top', '-10px')
+             
             }
 
         } else {
@@ -163,9 +162,9 @@ $(document).ready(function () {
                 image.style.opacity = 0;
             })
 
-            if (imageNumber < allImagesLength-1) {
+            if (imageNumber < allImagesLength - 1) {
                 allImages[imageNumber].style.opacity = 1
-            } else {
+            } else {
                 allImages[0].style.opacity = 1
             }
 
@@ -188,7 +187,7 @@ $(document).ready(function () {
             if (imageNumber < allImages.length) {
 
                 allImages[imageNumber].style.opacity = 1
-            } else {
+            } else {
                 allImages[0].style.opacity = 1
             }
 
@@ -318,15 +317,27 @@ $(document).ready(function () {
     const $burger = $('.link__burger')
     const $mobileMenu = $('#header--mobile')
     const $xMobile = $('#link__burger--mobile')
+    const $navMobile =  $('#navigation--mobile')
+
 
     $burger.on('click', function (e) {
         e.preventDefault()
         $mobileMenu.css('left', '0%');
+
+        let timeline = gsap.timeline();
+        timeline.from('#navigation--mobile', { opacity: 0 })
+        .to ('#navigation--mobile', { opacity: 1, duration: 1 })
+
+        let tl = gsap.timeline(); //create the timeline
+        tl.from("#link__burger--mobile svg", { rotation: 0, opacity: 0 }) //start sequencing
+            .to("#link__burger--mobile svg", { rotation: 90, ease: "ease", opacity: 1 })
     })
 
     $xMobile.on('click', function (e) {
         e.preventDefault()
         $mobileMenu.css('left', '100%');
+
+
     })
 
 
@@ -671,8 +682,52 @@ $(document).ready(function () {
     });
 
 
+    // SWIPE //
+
+    let
+        $swipeDiv = $('#swipe'),
+        $swipeHeadline = $('#swipe__h1'),
+        swipe = localStorage.getItem('swipe');
 
 
 
+    if (swipe !== 'true') {
+
+        if (windowWidth < 550) {
+            localStorage.setItem('swipe', 'true');
+            $swipeDiv.css('display', 'block')
+            let tl = gsap.timeline(); //create the timeline
+            tl.from("#swipe__h1", { x: 0, opacity: 1 }) //start sequencing
+                .to("#swipe__h1", { x: 70, ease: "ease" })
+                .to("#swipe__h1", { x: -70, ease: "ease" })
+                .to("#swipe__h1", { x: 70, ease: "ease" })
+                .to("#swipe__h1", { x: -70, ease: "ease" })
+                .to("#swipe__h1", { x: 0, ease: "ease" })
+                .to("#swipe__h1", { opacity: 0, ease: "ease" })
+                .to("#swipe__h1", { display: 'none', ease: "ease" })
+        } else {
+            $swipeDiv.css('display', 'none')
+        }
+
+    }
+
+
+
+    //COOKIE BANNER //
+
+    let
+        $cookieBannerButton = $('#cookie__banner--button'),
+        $cookieBanner = $('#cookie__banner'),
+        cookie = localStorage.getItem('cookie');
+
+    if (cookie !== 'true') {
+        $cookieBanner.css('display', 'flex')
+    }
+
+    $cookieBannerButton.on('click', function (event) {
+        localStorage.setItem('cookie', 'true');
+        $cookieBanner.css('display', 'none')
+        console.log(cookie);
+    })
 
 })

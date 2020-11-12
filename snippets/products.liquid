@@ -5,6 +5,7 @@
     <div id="products">
         {% for product in collections.frontpage.products %}
         <div class="product">
+            {% include 'swipe' %}
             <a class="product__url" href="{{ product.url | within: collection }}">
                 <div class="product__image__wrapper">
                    
