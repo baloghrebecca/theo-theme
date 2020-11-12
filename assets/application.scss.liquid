@@ -603,7 +603,7 @@ a {
     background-image: url("../assets/001-2.png");
     background-size: cover;
     padding: $margin__body;
-    padding-top: $padding__page--tablet - rem(50px) ;
+    padding-top: $padding__page--tablet ;
     position: relative;
     padding-bottom: $padding__top;
     margin-bottom: rem(-10px);
@@ -1364,8 +1364,13 @@ a {
                 cursor: $pointer;
 
                 @media screen and (max-width: $desktop__smallest) {
-                    stroke-width: 3;
-                    width: rem(20px);
+                    // stroke-width: 3;
+                    // width: rem(20px);
+
+                    stroke-width: 4;
+                    width: rem(30px);
+                    margin-top: rem(18px);
+                    margin-bottom: rem(10px);
                 }
 
                 @media screen and (max-width: $phone) {
@@ -1381,7 +1386,7 @@ a {
             }
         }
 
-        @media screen and (max-width: $phone) {
+        @media screen and (max-width: $tablet) {
 
             margin-bottom: rem(5px);
             h1 {
@@ -2605,4 +2610,9 @@ a {
     @media screen and (max-width: $phone) {
         padding: $padding__mobile;
     }
+}
+
+
+.step__footer__previous-link {
+    display: none;
 }

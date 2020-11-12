@@ -7,6 +7,164 @@ $(document).ready(function () {
         console.log('Jquery Ver:' + jQuery.fn.jquery);
     }
 
+        // CART SLIDE OUT //
+
+        const cartIcon = document.querySelector('.link__cart')
+        const cartIconMobile = document.querySelector('.link__cart--mobile')
+        const cartCloseIcon = document.querySelector('#cart__close')
+        const cart = document.querySelector('#cart')
+        const cartContainer = document.querySelector('.cart__products__container')
+    
+    
+        const toggleCart = () => {
+            let cartTop = cart.style.top
+    
+            if (cartTop == '0px') {
+                cart.style.top = '-120%'
+            } else {
+                cart.style.top = 0
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0;
+            }
+        }
+    
+        const openCartOnAdd = () => {
+            cart.style.top = 0
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0;
+        }
+    
+    
+    
+    
+        cartIcon.addEventListener('click', function (event) {
+            event.preventDefault();
+            toggleCart()
+        }, false)
+    
+        cartIconMobile.addEventListener('click', function (event) {
+            event.preventDefault();
+            toggleCart()
+        }, false)
+    
+        cartCloseIcon.addEventListener('click', function (event) {
+            event.preventDefault();
+            toggleCart()
+        }, false)
+
+   // ADD TO CART / UPDATE CART //
+
+   onAddToCart = function (event) {
+    event.preventDefault();
+
+    $.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: onCartUpdated, //what happens in success case
+        error: onError, //what happens in error case
+    });
+
+    openCartOnAdd()
+
+},
+    onLineRemoved = function (event) {
+
+        event.preventDefault()
+        event.stopPropagation()
+        let
+            $removeLink = $(this),
+            removeQuery = $removeLink.attr('href').split('change?')[1]
+        $.post('/cart/change.js', removeQuery, onCartUpdated, 'json')
+    },
+    onCartUpdated = function (event) {
+        //jQuery Ajax Call
+        $.ajax({
+            type: 'GET', //method
+            url: '/cart',
+            context: document.body,
+            success: function (context) {
+                let
+                    $dataCartContents = $(context).find('.cart__page--content'),
+                    dataCartHtml = $dataCartContents.html(),
+                    dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
+                    $miniCartContents = $('.cart__content');
+
+                $miniCartContents.html(dataCartHtml)
+
+            },
+            error: onError,
+        });
+
+
+    },
+    onError = function (XMLHttpRequest, message) {
+        let data = XMLHttpRequest.responseJSON
+    }
+
+
+const addToCartForm = document.querySelector('#AddToCartForm');
+const removeButtons = document.querySelectorAll('.cart__content .cart__remove__button')
+
+
+if (addToCartForm) {
+    addToCartForm.addEventListener('submit', onAddToCart, false);
+}
+
+
+$(document).on('click', '.cart__remove__button', onLineRemoved);
+
+
+
+//BUY NOW //
+
+$('#product__page__sizes .js-buy-now').on('click', function (e) {
+    e.preventDefault()
+
+    //add to cart + send to checkout page
+    $.ajax({
+        type: 'POST',
+        url: '/cart/add.js',
+        data: $(this).serialize(),
+        dataType: 'json',
+        success: onCartUpdated,
+        error: function (data) {
+            return;
+        },
+    })
+
+    openCartOnAdd()
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0;
+
+    onCartUpdated = function (event) {
+        //jQuery Ajax Call
+        $.ajax({
+            type: 'GET', //method
+            url: '/cart',
+            context: document.body,
+            success: function (context) {
+                let
+                    $dataCartContents = $(context).find('.cart__page--content'),
+                    dataCartHtml = $dataCartContents.html(),
+                    dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
+                    $miniCartContents = $('.cart__content');
+
+                $miniCartContents.html(dataCartHtml)
+
+            },
+            error: onError,
+        });
+
+
+    },
+        onError = function (XMLHttpRequest, message) {
+            let data = XMLHttpRequest.responseJSON
+
+        }
+});
+
 
     // LIVETICKER //
 
@@ -41,11 +199,14 @@ $(document).ready(function () {
     const navigation = document.querySelector('#navigation');
     const logo = document.querySelector('#link__logo');
     const burger = document.querySelector('.link__burger');
+    const $navigationIcons = $('#navigation__icons')
 
     let $cartDiv = $('#cart')
+    let $cartCloseIcon = $('#cart__close')
 
     let windowWidth = window.innerWidth
     let scrollPosition = 0;
+    let ticking = false;
 
     const resizingHeaderData = () => {
 
@@ -264,50 +425,7 @@ $(document).ready(function () {
         }, false);
     }
 
-    // CART SLIDE OUT //
 
-    const cartIcon = document.querySelector('.link__cart')
-    const cartIconMobile = document.querySelector('.link__cart--mobile')
-    const cartCloseIcon = document.querySelector('#cart__close')
-    const cart = document.querySelector('#cart')
-    const cartContainer = document.querySelector('.cart__products__container')
-
-
-    const toggleCart = () => {
-        let cartTop = cart.style.top
-
-        if (cartTop == '0px') {
-            cart.style.top = '-120%'
-        } else {
-            cart.style.top = 0
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0;
-        }
-    }
-
-    const openCartOnAdd = () => {
-        cart.style.top = 0
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0;
-    }
-
-
-
-
-    cartIcon.addEventListener('click', function (event) {
-        event.preventDefault();
-        toggleCart()
-    }, false)
-
-    cartIconMobile.addEventListener('click', function (event) {
-        event.preventDefault();
-        toggleCart()
-    }, false)
-
-    cartCloseIcon.addEventListener('click', function (event) {
-        event.preventDefault();
-        toggleCart()
-    }, false)
 
 
 
@@ -401,119 +519,7 @@ $(document).ready(function () {
     }
 
 
-    // ADD TO CART / UPDATE CART //
-
-    onAddToCart = function (event) {
-        event.preventDefault();
-
-        $.ajax({
-            type: 'POST',
-            url: '/cart/add.js',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: onCartUpdated, //what happens in success case
-            error: onError, //what happens in error case
-        });
-
-        openCartOnAdd()
-
-    },
-        onLineRemoved = function (event) {
-
-            event.preventDefault()
-            event.stopPropagation()
-            let
-                $removeLink = $(this),
-                removeQuery = $removeLink.attr('href').split('change?')[1]
-            $.post('/cart/change.js', removeQuery, onCartUpdated, 'json')
-        },
-        onCartUpdated = function (event) {
-            //jQuery Ajax Call
-            $.ajax({
-                type: 'GET', //method
-                url: '/cart',
-                context: document.body,
-                success: function (context) {
-                    let
-                        $dataCartContents = $(context).find('.cart__page--content'),
-                        dataCartHtml = $dataCartContents.html(),
-                        dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
-                        $miniCartContents = $('.cart__content');
-
-                    $miniCartContents.html(dataCartHtml)
-
-                },
-                error: onError,
-            });
-
-
-        },
-        onError = function (XMLHttpRequest, message) {
-            let data = XMLHttpRequest.responseJSON
-        }
-
-
-    const addToCartForm = document.querySelector('#AddToCartForm');
-    const removeButtons = document.querySelectorAll('.cart__content .cart__remove__button')
-
-
-    if (addToCartForm) {
-        addToCartForm.addEventListener('submit', onAddToCart, false);
-    }
-
-
-    $(document).on('click', '.cart__content .cart__remove__button', onLineRemoved);
-
-
-
-    //BUY NOW //
-
-    $('#product__page__sizes .js-buy-now').on('click', function (e) {
-        e.preventDefault()
-
-        //add to cart + send to checkout page
-        $.ajax({
-            type: 'POST',
-            url: '/cart/add.js',
-            data: $(this).serialize(),
-            dataType: 'json',
-            success: onCartUpdated,
-            error: function (data) {
-                return;
-            },
-        })
-
-        openCartOnAdd()
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0;
-
-        onCartUpdated = function (event) {
-            //jQuery Ajax Call
-            $.ajax({
-                type: 'GET', //method
-                url: '/cart',
-                context: document.body,
-                success: function (context) {
-                    let
-                        $dataCartContents = $(context).find('.cart__page--content'),
-                        dataCartHtml = $dataCartContents.html(),
-                        dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
-                        $miniCartContents = $('.cart__content');
-
-                    $miniCartContents.html(dataCartHtml)
-
-                },
-                error: onError,
-            });
-
-
-        },
-            onError = function (XMLHttpRequest, message) {
-                let data = XMLHttpRequest.responseJSON
-
-            }
-    });
-
+ 
     // CART QUANTITY //
 
     let
@@ -667,19 +673,6 @@ $(document).ready(function () {
         $passwordResetForm.css('display', 'block');
         $registerForm.css('display', 'none');
     })
-
-    //LOTTIE //
-
-
-
-    let svgContainer2 = document.querySelector('#logoLottie');
-    let animItem2 = bodymovin.loadAnimation({
-        wrapper: svgContainer2,
-        animType: 'svg',
-        //   preserveAspectRatio: 'none',
-        loop: true,
-        path: "https://assets4.lottiefiles.com/packages/lf20_NZLrr8.json"
-    });
 
 
     // SWIPE //
