@@ -86,7 +86,7 @@
 
                     </div>
                     <!-- <button class="button__cart">Notify me</button> -->
-                    {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+                    {% unless product.available %}<br><strong id="soldout__text">sold out</strong>{% endunless %}
                 </div>
 
                 <div class="product__info">
@@ -117,8 +117,7 @@
                                 <label class="" for="{{ variant.id }}">
                                     <a href="#" class="BIS_trigger notify__button" data-product-data="{{ product | json | escape }}"
                                     data-variant-id="{{ variant.id }}">
-                                    {{ variant.options[0] }} 
-                                  </a></label>
+                                    {{ variant.options[0] }}</a></label>
                                 {% endif %}
                                 {% endfor %}
                               </div>
@@ -126,21 +125,6 @@
                             <input type="hidden" id="Quantity" name="quantity" value="1" min="1"> 
                         </form>
 
-
-
-
-                        <!-- {% assign sizes = '' %}
-                        {% for variant in product.variants %}
-                        {% if variant.available %}
-                        {% assign sizes = sizes | append: variant.options[0] | append: '_' %}
-                        {% endif %}
-                        {% endfor %}
-
-                        {% assign sizesArr = sizes | split: '_' | uniq %}
-
-                        {% for size in sizesArr %}
-                        <span class="product__sizes--size">{{ size }}</span>
-                        {% endfor %} -->
                     </div>
                 </div>
             </div>

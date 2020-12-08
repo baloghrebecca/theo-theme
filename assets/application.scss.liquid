@@ -600,7 +600,7 @@ a {
 /* PRODUCTS */
 
 #products__wrapper {
-    background-image: url("../assets/001-2.png");
+    background-image: url("../assets/3_THEO_winter_sky_newsletter_website.jpg");
     background-size: cover;
     padding: $margin__body;
     padding-top: $padding__page--tablet ;
@@ -949,6 +949,12 @@ a {
 
     @media screen and (max-width: $tablet) {
         padding-top: $padding__page--tablet;
+        background-size: auto;
+        background-repeat: no-repeat;
+
+        .background__gradient--grey {
+            background: linear-gradient(180deg, rgba(239, 231, 222, 0) 1.94%, #efe7de 70%);
+        }
     }
 
     @media screen and (max-width: $phone) {
@@ -1276,7 +1282,7 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: $text__color--red;
+    background-color: #344271;
     padding-left: 0;
     padding-right: 0;
 
@@ -1291,7 +1297,11 @@ a {
             // width: 200px;
             flex: 0 0 auto; //cant expand can't shrink and stays it's size
             display: inline-block;
-            margin-left: rem(20px);
+            margin-left: rem(15px);
+
+            @media screen and (max-width: $phone) {
+                margin-left: rem(15px);
+            }
         }
     }
 }
@@ -1326,6 +1336,49 @@ a {
 }
 
 // LIVETICKERS END //
+
+// STAR BUTTON START//
+
+#star {
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: -75px;
+    z-index: 999;
+
+    #star__text {
+        font-size: 18px;
+        width: 40%;
+        position: absolute;
+        top: 45%;  /* position the top  edge of the element at the middle of the parent */
+        left: 40%; /* position the left edge of the element at the middle of the parent */
+        transform: translate(-50%, -50%); 
+        font-weight: $font-bold;
+        text-align: center;
+    }
+
+    svg {
+        width: 80%;
+    }
+
+    @media screen and (max-width: $desktop__smallest) {
+        top: 50px;
+        right: -130px;
+
+        svg {
+            width: 60%;
+        }
+
+        #star__text {
+            font-size: 13px;
+            width: 30%;
+            top: 47%;  /* position the top  edge of the element at the middle of the parent */
+            left: 30%; /* position the left edge of the element at the middle of the parent */
+        }
+    }
+}
+
+// STAR BUTTON END //
 
 // CART START//
 
@@ -2615,4 +2668,8 @@ a {
 
 .step__footer__previous-link {
     display: none;
+}
+
+#soldout__text {
+    text-align: right;
 }

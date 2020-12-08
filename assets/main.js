@@ -183,8 +183,6 @@ $(document).ready(function () {
                 },
                 error: onError,
             });
-
-
         },
             onError = function (XMLHttpRequest, message) {
                 let data = XMLHttpRequest.responseJSON
@@ -200,7 +198,7 @@ $(document).ready(function () {
     const livetickerPurple = document.querySelector('#liveticker__purple p')
     const livetickerRedSize = document.querySelector('#liveticker__red p span')
 
-    const livetickerRedSizeWidth = livetickerRedSize.clientWidth + 20;
+    const livetickerRedSizeWidth = livetickerRedSize.clientWidth *5 +20;
     const livetickerPurpleSizeWidth = livetickerPurpleSize.clientWidth + 20;
 
 
@@ -214,7 +212,7 @@ $(document).ready(function () {
 
     movementTimeline
         .set(liveticker, { x: 0 })
-        .to(liveticker, { x: -livetickerRedSizeWidth, duration: 4, ease: "linear" })
+        .to(liveticker, { x: -livetickerRedSizeWidth, duration: 30, ease: "linear" })
 
     movementTimeline2
         .set(livetickerPurple, { x: 0 })
@@ -227,6 +225,7 @@ $(document).ready(function () {
     const logo = document.querySelector('#link__logo');
     const burger = document.querySelector('.link__burger');
     const $navigationIcons = $('#navigation__icons')
+    const $star = $('#star') 
 
     let $cartDiv = $('#cart')
     let $cartCloseIcon = $('#cart__close')
@@ -239,7 +238,7 @@ $(document).ready(function () {
 
         if (scrollPosition > 50) {
 
-
+            $star.css('display', 'block')
             navigation.style.top = "-10px"
             logo.style.width = '150px'
 
@@ -262,22 +261,26 @@ $(document).ready(function () {
         } else {
 
             if (windowWidth > 1098) {
+                $star.css('display', 'none')
                 navigation.style.top = "50px"
                 logo.style.width = '240px'
             }
 
             if (windowWidth < 1098) {
+                $star.css('display', 'none')
                 navigation.style.top = "50px"
                 logo.style.width = '200px'
             }
 
             if (windowWidth < 780) {
+                $star.css('display', 'none')
                 navigation.style.top = "50px"
                 logo.style.width = '200px'
                 burger.style.marginTop = '20px'
             }
 
             if (windowWidth < 550) {
+                $star.css('display', 'none')
                 navigation.style.top = "50px"
                 logo.style.width = '150px'
                 burger.style.marginTop = '20px'
@@ -308,6 +311,7 @@ $(document).ready(function () {
     //HEAD ROTATION ON SCROLL//
 
     const head = document.querySelector('#intro__head--container img')
+    const star = document.querySelector('#star__svg')
     const intro = document.querySelector('#intro')
 
     gsap.registerPlugin(ScrollTrigger);
@@ -317,14 +321,12 @@ $(document).ready(function () {
         scrollTrigger: {
             trigger: "#products",
             scrub: 0.2,
-            // start: 'top top',
         }
     })
         .to(head, {
             rotation: 360 * 2,
             duration: 1, ease: 'none',
         })
-
 
 
 
