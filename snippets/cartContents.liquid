@@ -5,7 +5,7 @@
   {% for item in cart.items %}
   <div class="cart__product">
     <p class="cart__product--title">
-      <button><a class="cart__remove__button"
+      <button><a class="cart__remove__button"  data-id="{{item.variant_id}}"
         href="/cart/change?line={{ forloop.index }}&amp;quantity=0">x</a></button> <a
         href="{{ item.url }}">{{ item.product.title }} <span
           class="cart__product--color">({{ item.options_with_values[1].value }})</span>
